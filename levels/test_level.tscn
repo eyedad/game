@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbd714ds1oe1i"]
+[gd_scene load_steps=7 format=3 uid="uid://cbd714ds1oe1i"]
 
 [ext_resource type="Texture2D" uid="uid://cna0p3p4o7xro" path="res://textures/grass.png" id="1_8hqwy"]
 [ext_resource type="Texture2D" uid="uid://bhyy7ab77h4qo" path="res://textures/fence.png" id="2_fscw6"]
+[ext_resource type="PackedScene" uid="uid://b7lkxfcybv7mi" path="res://creatures/base_creature/body.tscn" id="3_6n8x6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uum4b"]
 texture = ExtResource("1_8hqwy")
@@ -442,3 +443,6 @@ layer_0/name = "terrain"
 layer_0/tile_data = PackedInt32Array(-65537, 1, 0, -1, 1, 0, 65535, 1, 0, 131071, 1, 0, 196607, 1, 0, 262143, 1, 0, 327679, 1, 0, 393215, 1, 0, 458751, 1, 0, 524287, 1, 0, -131072, 1, 0, -65536, 1, 0, 0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 327680, 1, 0, 393216, 1, 0, 458752, 1, 0, -131071, 1, 0, -65535, 1, 0, 1, 1, 0, 65537, 1, 0, 131073, 1, 0, 196609, 1, 0, 262145, 1, 0, 327681, 1, 0, 393217, 1, 0, 458753, 1, 0, -131070, 1, 0, -65534, 1, 0, 2, 1, 0, 65538, 1, 0, 131074, 1, 0, 196610, 1, 0, 262146, 1, 0, 327682, 1, 0, 393218, 1, 0, 458754, 1, 0, -131069, 1, 0, -65533, 1, 0, 3, 1, 0, 65539, 1, 0, 131075, 1, 0, 196611, 1, 0, 262147, 1, 0, 327683, 1, 0, 393219, 1, 0, 458755, 1, 0)
 layer_1/name = "enviroment"
 layer_1/tile_data = PackedInt32Array(131072, 2, 0, 1, 2, 0, 2, 2, 536870912, 131075, 2, 536870912, 262147, 2, 805306368, 393218, 2, 805306368, 393217, 2, 268435456)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_6n8x6")]
+position = Vector2(490, 327)
