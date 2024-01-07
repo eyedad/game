@@ -9,7 +9,11 @@
 script = ExtResource("1_ke0ip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(10, 10)
 shape = SubResource("CircleShape2D_whlpa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_1ko0q")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(10, 10)
