@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cna0p3p4o7xro" path="res://textures/grass.png" id="1_8hqwy"]
 [ext_resource type="Texture2D" uid="uid://bhyy7ab77h4qo" path="res://textures/fence.png" id="2_fscw6"]
-[ext_resource type="PackedScene" path="res://creatures/base_creature/body.tscn" id="3_6n8x6"]
+[ext_resource type="PackedScene" uid="uid://b7lkxfcybv7mi" path="res://creatures/base_creature/body.tscn" id="3_6n8x6"]
 [ext_resource type="Texture2D" uid="uid://cetxu5l1i8o0s" path="res://textures/fence_angle.png" id="3_jfhn7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uum4b"]
