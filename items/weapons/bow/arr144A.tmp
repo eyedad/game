@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctck1vqbjaljl"]
+
+[ext_resource type="Texture2D" uid="uid://ckfig8atgloax" path="res://bullet.png" id="1_upnnu"]
+
+[sub_resource type="GDScript" id="GDScript_yf4r4"]
+script/source = "extends Node2D
+const speed=800
+
+func _physics_process(delta):
+	pass
+	#velocity=speed*delta
+"
+
+[node name="Arrow" type="Node2D"]
+script = SubResource("GDScript_yf4r4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(94, 1.625)
+scale = Vector2(0.688679, 0.610215)
+texture = ExtResource("1_upnnu")

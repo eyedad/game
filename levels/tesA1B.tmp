@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cbd714ds1oe1i"]
+[gd_scene load_steps=11 format=3 uid="uid://cbd714ds1oe1i"]
 
 [ext_resource type="Texture2D" uid="uid://cna0p3p4o7xro" path="res://textures/grass.png" id="1_8hqwy"]
 [ext_resource type="Texture2D" uid="uid://bhyy7ab77h4qo" path="res://textures/fence.png" id="2_fscw6"]
 [ext_resource type="Texture2D" uid="uid://cetxu5l1i8o0s" path="res://textures/fence_angle.png" id="3_jfhn7"]
 [ext_resource type="PackedScene" uid="uid://dbm0bcglwm5jh" path="res://creatures/player/player.tscn" id="5_burw4"]
-[ext_resource type="PackedScene" uid="uid://dl1ob5854leye" path="res://items/weapons/bow/bow.tscn" id="5_tl6x7"]
-[ext_resource type="PackedScene" uid="uid://ctck1vqbjaljl" path="res://items/weapons/bow/arrow.tscn" id="6_em1gl"]
+[ext_resource type="Script" path="res://items/weapons/bow/bows.gd" id="5_os64q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uum4b"]
 texture = ExtResource("1_8hqwy")
@@ -474,9 +473,9 @@ layer_1/name = "enviroment"
 layer_1/y_sort_enabled = true
 layer_1/tile_data = PackedInt32Array(262146, 2, 0, 196610, 2, 0, 131075, 2, 0, 131076, 2, 268435456, 196612, 2, 268435456, 262149, 2, 268435456, 327685, 2, 268435456, 393221, 2, 0, 458756, 2, 0, 524292, 2, 0, 524291, 2, 268435456, 458754, 2, 268435456, 589827, 3, 0)
 
+[node name="bow" type="Node" parent="."]
+script = ExtResource("5_os64q")
+
 [node name="Player" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("5_burw4")]
 position = Vector2(530, 488)
-weapon = NodePath("../Bow")
-
-[node name="Bow" parent="." instance=ExtResource("5_tl6x7")]
-arrow = ExtResource("6_em1gl")
+weapon = NodePath("../bow")
