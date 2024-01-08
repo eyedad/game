@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbd714ds1oe1i"]
+[gd_scene load_steps=10 format=3 uid="uid://cbd714ds1oe1i"]
 
 [ext_resource type="Texture2D" uid="uid://cna0p3p4o7xro" path="res://textures/grass.png" id="1_8hqwy"]
 [ext_resource type="Texture2D" uid="uid://bhyy7ab77h4qo" path="res://textures/fence.png" id="2_fscw6"]
-[ext_resource type="PackedScene" uid="uid://b7lkxfcybv7mi" path="res://creatures/base_creature/body.tscn" id="3_6n8x6"]
 [ext_resource type="Texture2D" uid="uid://cetxu5l1i8o0s" path="res://textures/fence_angle.png" id="3_jfhn7"]
+[ext_resource type="PackedScene" uid="uid://chk8k06qfeoyn" path="res://creatures/player/player.tscn" id="4_jcegl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uum4b"]
 texture = ExtResource("1_8hqwy")
@@ -440,6 +440,16 @@ texture_region_size = Vector2i(320, 320)
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xamyk"]
+texture_region_size = Vector2i(320, 349)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(-4, -174)
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+
 [sub_resource type="TileSet" id="TileSet_jsk20"]
 tile_shape = 1
 tile_size = Vector2i(320, 160)
@@ -447,6 +457,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_uum4b")
 sources/2 = SubResource("TileSetAtlasSource_ra2c6")
 sources/3 = SubResource("TileSetAtlasSource_h6by0")
+sources/4 = SubResource("TileSetAtlasSource_xamyk")
 
 [node name="TestLevel" type="Node2D"]
 y_sort_enabled = true
@@ -461,6 +472,5 @@ layer_1/name = "enviroment"
 layer_1/y_sort_enabled = true
 layer_1/tile_data = PackedInt32Array(262146, 2, 0, 196610, 2, 0, 131075, 2, 0, 131076, 2, 268435456, 196612, 2, 268435456, 262149, 2, 268435456, 327685, 2, 268435456, 393221, 2, 0, 458756, 2, 0, 524292, 2, 0, 524291, 2, 268435456, 458754, 2, 268435456, 589827, 3, 0)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("3_6n8x6")]
-y_sort_enabled = true
-position = Vector2(490, 327)
+[node name="Player" parent="." instance=ExtResource("4_jcegl")]
+position = Vector2(557, 534)
