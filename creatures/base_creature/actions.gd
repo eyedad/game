@@ -11,4 +11,6 @@ func manual_control_move(delta, obj:Creature, shoot_point_position:Vector2):
 		obj.velocity.y -= 1
 	# Нормализация вектора скорости, чтобы движение по диагонали не было быстрее
 	obj.velocity = obj.velocity.normalized() * obj.speed
-	obj.weapon.attack(obj, delta, shoot_point_position)
+
+	if not obj.weapon == null:
+		obj.weapon.attack(obj, delta, shoot_point_position)

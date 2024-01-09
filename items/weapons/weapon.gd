@@ -1,5 +1,5 @@
 extends Node2D
-class_name weapon
+class_name Weapon
 @export var damae:int = 10
 @export var attack_speed:float = 2
 @export var clip_size:int = 4
@@ -21,4 +21,7 @@ func attack(creature, delta, shoot_point_position):
 		instate.global_position=global_shoot_point_position
 		instate.rotation=direction.angle()
 		add_child(instate)
-
+		#print("creature_position", creature_position, creature)
+		#print("global_mouse_position", global_mouse_position, creature)	
+		print("global_shoot_point_position", global_shoot_point_position, creature)
+		print("instate.global_position", instate.global_position, creature)

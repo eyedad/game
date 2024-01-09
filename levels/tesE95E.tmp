@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbd714ds1oe1i"]
+[gd_scene load_steps=14 format=3 uid="uid://cbd714ds1oe1i"]
 
 [ext_resource type="Texture2D" uid="uid://cna0p3p4o7xro" path="res://textures/grass.png" id="1_8hqwy"]
+[ext_resource type="PackedScene" uid="uid://br3rqmydq6k6y" path="res://items/weapons/null_weapon.tscn" id="1_sopik"]
 [ext_resource type="Texture2D" uid="uid://bhyy7ab77h4qo" path="res://textures/fence.png" id="2_fscw6"]
 [ext_resource type="Texture2D" uid="uid://cetxu5l1i8o0s" path="res://textures/fence_angle.png" id="3_jfhn7"]
 [ext_resource type="PackedScene" uid="uid://dbm0bcglwm5jh" path="res://creatures/player/player.tscn" id="5_burw4"]
 [ext_resource type="PackedScene" uid="uid://dl1ob5854leye" path="res://items/weapons/bow/bow.tscn" id="5_tl6x7"]
+[ext_resource type="PackedScene" uid="uid://ctck1vqbjaljl" path="res://items/weapons/bow/arrow.tscn" id="6_em1gl"]
+[ext_resource type="PackedScene" uid="uid://bp3uempvqwjiy" path="res://creatures/skeleton/skeleton.tscn" id="7_uinh3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uum4b"]
 texture = ExtResource("1_8hqwy")
@@ -463,6 +466,8 @@ sources/4 = SubResource("TileSetAtlasSource_xamyk")
 [node name="TestLevel" type="Node2D"]
 y_sort_enabled = true
 
+[node name="NullWeapon" parent="." instance=ExtResource("1_sopik")]
+
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_jsk20")
@@ -473,10 +478,24 @@ layer_1/name = "enviroment"
 layer_1/y_sort_enabled = true
 layer_1/tile_data = PackedInt32Array(262146, 2, 0, 196610, 2, 0, 131075, 2, 0, 131076, 2, 268435456, 196612, 2, 268435456, 262149, 2, 268435456, 327685, 2, 268435456, 393221, 2, 0, 458756, 2, 0, 524292, 2, 0, 524291, 2, 268435456, 458754, 2, 268435456, 589827, 3, 0)
 
+[node name="Player" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("5_burw4")]
+position = Vector2(530, 488)
+health = null
+speed = null
+mana = null
+armor = null
+weapon = NodePath("../Bow")
+
+[node name="Bow2" parent="." instance=ExtResource("5_tl6x7")]
+arrow = ExtResource("6_em1gl")
+
 [node name="Bow" parent="." instance=ExtResource("5_tl6x7")]
+arrow = ExtResource("6_em1gl")
 
-[node name="Player" parent="." instance=ExtResource("5_burw4")]
-position = Vector2(578, 395)
-
-[node name="Player2" parent="." instance=ExtResource("5_burw4")]
-position = Vector2(346.118, 433.447)
+[node name="skeleton" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("7_uinh3")]
+position = Vector2(707, 371)
+health = null
+speed = null
+mana = null
+armor = null
+weapon = NodePath("../Bow2")

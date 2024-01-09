@@ -1,18 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbm0bcglwm5jh"]
+[gd_scene load_steps=6 format=3 uid="uid://dbm0bcglwm5jh"]
 
 [ext_resource type="PackedScene" uid="uid://c8ytpr5nt5ect" path="res://creatures/base_creature/creature.tscn" id="1_8n70k"]
 [ext_resource type="SpriteFrames" uid="uid://dc7lr72g7a3mc" path="res://creatures/player/player.tres" id="2_lg7si"]
-[ext_resource type="Script" path="res://creatures/player/state_machine.gd" id="2_uggld"]
+[ext_resource type="Script" path="res://creatures/base_creature/state_machine.gd" id="2_r8phj"]
+[ext_resource type="PackedScene" uid="uid://dl1ob5854leye" path="res://items/weapons/bow/bow.tscn" id="4_6h4qo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jf0rr"]
 size = Vector2(30, 6)
 
-[node name="Player" instance=ExtResource("1_8n70k")]
-scale = Vector2(3, 3)
-script = ExtResource("2_uggld")
+[node name="Player" node_paths=PackedStringArray("weapon") instance=ExtResource("1_8n70k")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_r8phj")
+weapon = NodePath("Bow")
 
 [node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(5.96046e-08, 1.90735e-06)
 shape = SubResource("RectangleShape2D_jf0rr")
 
 [node name="shoot_point" parent="." index="1"]
@@ -21,8 +23,10 @@ position = Vector2(0, -21)
 [node name="AnimatedSprite2D" parent="." index="2"]
 position = Vector2(0, -28)
 sprite_frames = ExtResource("2_lg7si")
-animation = &"idle"
-frame_progress = 0.589807
+animation = &"walk_up"
+frame_progress = 0.0840474
 
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
 position = Vector2(0, -28)
+
+[node name="Bow" parent="." index="4" instance=ExtResource("4_6h4qo")]

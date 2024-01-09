@@ -1,2 +1,2 @@
 extends Node
-class_name clothes
+class_name Clothes

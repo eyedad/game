@@ -1,7 +1,7 @@
 extends Creature
-class_name state_machine
-var anim=preload("res://creatures/player/animation.gd").new()
-var phys=preload("res://creatures/player/actions.gd").new()
+class_name State_machine
+var anim=preload("res://creatures/base_creature/animation.gd").new()
+var phys=preload("res://creatures/base_creature/actions.gd").new()
 enum{
 	MOVE,
 	DAMAGED,
