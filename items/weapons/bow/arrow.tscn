@@ -8,10 +8,9 @@ const speed=800
 var direction
 func _ready():
 	direction=Vector2.from_angle(rotation)
-	print(direction)
 func _physics_process(delta):
 	velocity=speed*direction
-	move_and_slide()
+	move_and_collide()
 	await get_tree().create_timer(1).timeout
 	$\".\".queue_free()
 "

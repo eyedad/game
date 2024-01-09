@@ -21,8 +21,7 @@ position = Vector2(0, -21)
 [node name="AnimatedSprite2D" parent="." index="2"]
 position = Vector2(0, -28)
 sprite_frames = ExtResource("2_lg7si")
-animation = &"idle"
-frame_progress = 0.589807
+animation = &"walk_down"
 
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
 position = Vector2(0, -28)
