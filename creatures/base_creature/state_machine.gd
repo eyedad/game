@@ -25,3 +25,4 @@ func _physics_process(delta):
 		DEATH:
 			pass
 	move_and_slide()
+#fet
