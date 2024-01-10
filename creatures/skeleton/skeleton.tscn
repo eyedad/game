@@ -1,31 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bp3uempvqwjiy"]
+[gd_scene load_steps=3 format=3 uid="uid://bxqlo85eaa2a"]
 
-[ext_resource type="PackedScene" uid="uid://sc2bsc360p0p" path="res://creatures/base_mob/base_mob.tscn" id="1_7mhl8"]
-[ext_resource type="SpriteFrames" uid="uid://b6dg855v48ajy" path="res://creatures/skeleton/skeleton.tres" id="2_7xn67"]
-[ext_resource type="Script" path="res://creatures/base_creature/state_machine.gd" id="2_gr7jj"]
+[ext_resource type="PackedScene" uid="uid://c8ytpr5nt5ect" path="res://creatures/base_creature/creature.tscn" id="1_y84je"]
 [ext_resource type="PackedScene" uid="uid://dl1ob5854leye" path="res://items/weapons/bow/bow.tscn" id="4_kw1qs"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jf5yv"]
-radius = 15.6667
-height = 52.0
-
-[node name="skeleton" node_paths=PackedStringArray("weapon") instance=ExtResource("1_7mhl8")]
-scale = Vector2(3, 3)
-script = ExtResource("2_gr7jj")
+[node name="skeleton" node_paths=PackedStringArray("weapon") instance=ExtResource("1_y84je")]
+scale = Vector2(2, 2)
+speed = 150.0
 weapon = NodePath("Bow")
 
-[node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0, -23)
-shape = SubResource("CapsuleShape2D_jf5yv")
-
-[node name="shoot_point" parent="." index="1"]
-position = Vector2(0.333333, -28)
-scale = Vector2(0.33, 0.33)
-
-[node name="AnimatedSprite2D" parent="." index="2"]
-position = Vector2(0, -28)
-sprite_frames = ExtResource("2_7xn67")
-animation = &"walk_up"
-
-[node name="Bow" parent="." index="3" instance=ExtResource("4_kw1qs")]
-scale = Vector2(0.33, 0.33)
+[node name="Bow" parent="." index="0" instance=ExtResource("4_kw1qs")]

@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://b6dg855v48ajy" path="res://creatures/skeleton/skeleton.tres" id="2_pcosp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hne1j"]
-size = Vector2(25.5, 7)
+size = Vector2(25.5, 9)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vh67q"]
 radius = 263.387
@@ -17,7 +17,6 @@ height = 52.0
 script = ExtResource("1_c3ijj")
 
 [node name="legs_collision_shape" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_hne1j")
 
@@ -30,19 +29,14 @@ sprite_frames = ExtResource("2_pcosp")
 animation = &"idle"
 
 [node name="detector_area" type="Area2D" parent="."]
-visible = false
 
 [node name="detector_area_shape" type="CollisionShape2D" parent="detector_area"]
 shape = SubResource("CircleShape2D_vh67q")
 
 [node name="hit_box" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 0
 
 [node name="hit_box_shape" type="CollisionShape2D" parent="hit_box"]
 position = Vector2(0, -21.5)
 shape = SubResource("CapsuleShape2D_h6p51")
-
-[connection signal="body_entered" from="detector_area" to="." method="_on_detector_area_body_entered"]
-[connection signal="body_exited" from="detector_area" to="." method="_on_detector_area_body_exited"]
-[connection signal="body_entered" from="hit_box" to="." method="_on_hit_box_body_entered"]

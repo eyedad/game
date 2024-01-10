@@ -19,4 +19,3 @@ frame_progress = 0.0840474
 position = Vector2(0, -28)
 
 [node name="Bow" parent="." index="4" instance=ExtResource("4_6h4qo")]
-visible = false

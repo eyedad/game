@@ -13,4 +13,5 @@ func move_state(delta, animation, creature):
 	elif angle>=2.35 and angle<3.15 or angle>=-3.15 and angle<-2.35:
 		animation.play("walk_left")
 	
-	
+func damages_state(delta, obj:State_machine, animation: AnimatedSprite2D):
+	pass

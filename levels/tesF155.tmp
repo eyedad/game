@@ -475,21 +475,6 @@ layer_1/tile_data = PackedInt32Array(262146, 2, 0, 196610, 2, 0, 131075, 2, 0, 1
 
 [node name="Player" parent="." instance=ExtResource("5_burw4")]
 position = Vector2(578, 395)
-health = 100
-speed = 300.0
-mana = 300.0
-armor = 0
 
 [node name="skeleton" parent="." instance=ExtResource("6_557sg")]
-position = Vector2(298, 887)
-is_player = false
-health = 100
-mana = 300.0
-armor = 0
-
-[node name="skeleton3" parent="." instance=ExtResource("6_557sg")]
-position = Vector2(738, 1084)
-is_player = false
-health = 100
-mana = 300.0
-armor = 0
+position = Vector2(336, 458)

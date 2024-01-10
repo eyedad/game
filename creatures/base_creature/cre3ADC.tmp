@@ -17,7 +17,6 @@ height = 52.0
 script = ExtResource("1_c3ijj")
 
 [node name="legs_collision_shape" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_hne1j")
 
@@ -30,14 +29,13 @@ sprite_frames = ExtResource("2_pcosp")
 animation = &"idle"
 
 [node name="detector_area" type="Area2D" parent="."]
-visible = false
 
 [node name="detector_area_shape" type="CollisionShape2D" parent="detector_area"]
 shape = SubResource("CircleShape2D_vh67q")
 
 [node name="hit_box" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 0
 
 [node name="hit_box_shape" type="CollisionShape2D" parent="hit_box"]
 position = Vector2(0, -21.5)

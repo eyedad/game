@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bp44rm6kan52h"]
-
-[sub_resource type="GDScript" id="GDScript_v4t66"]
-script/source = "extends \"res://items/weapons/weapon.gd\"
-class_name null_weapon
-"
-
-[node name="NullWeapon" type="Node2D"]
-script = SubResource("GDScript_v4t66")
