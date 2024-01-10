@@ -477,6 +477,3 @@ layer_1/tile_data = PackedInt32Array(262146, 2, 0, 196610, 2, 0, 131075, 2, 0, 1
 
 [node name="Player" parent="." instance=ExtResource("5_burw4")]
 position = Vector2(578, 395)
-
-[node name="Player2" parent="." instance=ExtResource("5_burw4")]
-position = Vector2(346.118, 433.447)
