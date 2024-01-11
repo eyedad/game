@@ -474,19 +474,13 @@ layer_1/y_sort_enabled = true
 layer_1/tile_data = PackedInt32Array(262146, 2, 0, 196610, 2, 0, 131075, 2, 0, 131076, 2, 268435456, 196612, 2, 268435456, 262149, 2, 268435456, 327685, 2, 268435456, 393221, 2, 0, 458756, 2, 0, 524292, 2, 0, 524291, 2, 268435456, 458754, 2, 268435456, 589827, 3, 0)
 
 [node name="skeleton" parent="." instance=ExtResource("6_557sg")]
-position = Vector2(520, 18)
+position = Vector2(126, 282)
 
 [node name="skeleton2" parent="." instance=ExtResource("6_557sg")]
-position = Vector2(232, 429)
+position = Vector2(-106, 523)
 
 [node name="skeleton3" parent="." instance=ExtResource("6_557sg")]
-position = Vector2(224, 125)
-
-[node name="skeleton4" parent="." instance=ExtResource("6_557sg")]
-position = Vector2(445, 191)
-
-[node name="skeleton5" parent="." instance=ExtResource("6_557sg")]
-position = Vector2(-84, 258)
+position = Vector2(62, 808)
 
 [node name="player" parent="." instance=ExtResource("5_burw4")]
-position = Vector2(1630, 1062)
+position = Vector2(530, 475)

@@ -10,15 +10,6 @@ weapon = NodePath("Bow")
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("2_lg7si")
-animation = &"death"
-frame = 4
-frame_progress = 1.0
-
-[node name="detector_area" parent="." index="3"]
-visible = false
-
-[node name="hit_box" parent="." index="4"]
-visible = false
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 

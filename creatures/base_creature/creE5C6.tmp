@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8ytpr5nt5ect"]
+[gd_scene load_steps=6 format=3 uid="uid://c8ytpr5nt5ect"]
 
 [ext_resource type="Script" path="res://creatures/base_creature/creature.gd" id="1_x8m6b"]
 [ext_resource type="SpriteFrames" uid="uid://b6dg855v48ajy" path="res://creatures/skeleton/skeleton.tres" id="2_pcosp"]
@@ -13,16 +13,14 @@ radius = 263.387
 radius = 14.5
 height = 52.0
 
-[sub_resource type="GDScript" id="GDScript_vgvt0"]
-script/source = "extends Label
-func _physics_process(delta):
-	text=\"HP: \" + str($\"..\".health)
-	
-"
-
 [node name="Creature" type="CharacterBody2D"]
-scale = Vector2(2, 2)
+collision_mask = 3
 script = ExtResource("1_x8m6b")
+health = null
+speed = null
+mana = null
+armor = null
+is_player = null
 
 [node name="legs_collision_shape" type="CollisionShape2D" parent="."]
 visible = false
@@ -38,6 +36,7 @@ sprite_frames = ExtResource("2_pcosp")
 animation = &"idle"
 
 [node name="detector_area" type="Area2D" parent="."]
+visible = false
 
 [node name="detector_area_shape" type="CollisionShape2D" parent="detector_area"]
 shape = SubResource("CircleShape2D_vh67q")
@@ -50,14 +49,6 @@ collision_mask = 2
 position = Vector2(0, -21.5)
 shape = SubResource("CapsuleShape2D_h6p51")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -21.0
-offset_top = -88.5
-offset_right = 19.0
-offset_bottom = -60.5
-theme_override_font_sizes/font_size = 20
-script = SubResource("GDScript_vgvt0")
-
 [connection signal="body_entered" from="detector_area" to="." method="_on_detector_area_body_entered"]
-[connection signal="body_exited" from="detector_area" to="." method="_on_detector_area_body_exited"]
 [connection signal="body_entered" from="hit_box" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_exited" from="hit_box" to="." method="_on_hit_box_body_exited"]

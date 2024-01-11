@@ -10,5 +10,5 @@ func _ready():
 func _physics_process(delta):
 	velocity=speed*direction
 	move_and_slide()
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(2).timeout
 	$".".queue_free()
