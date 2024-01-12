@@ -1,12 +1,13 @@
 extends Node2D
 class_name Weapon
 
-@export var damage:int = 10
+@export var base_damage:int = 30
 @export var reload_time_ms:int = 1000
 @export var clip_size:int = 1
 @export var attack_speed_ms:int = 1000
 @export var arrow:PackedScene
 
+var damage = base_damage
 var bullets_left
 var time=0
 
@@ -21,9 +22,11 @@ func attack(creature, global_shoot_point_position:Vector2, bullet_angle):
 			instate.global_position=global_shoot_point_position/creature.scale #множитель хз от куда
 			instate.rotation=bullet_angle
 			instate.damage=damage
+			damage = base_damage
 			add_child(instate)
 			bullets_left -= 1
 	elif Time.get_ticks_msec()-time>=reload_time_ms:
 		bullets_left = clip_size
 		#print("global_shoot_point_position", global_shoot_point_position, creature)
 		#print("instate.global_position", instate.global_position, creature)
+	

@@ -1,8 +1,9 @@
 extends CharacterBody2D
 class_name Projectile
-@onready var projectile = true
+
 var damage
 
+@export var status_effect: Dictionary= {"poison":[2, 4]}
 @export var speed=500
 var direction
 func _ready():
@@ -12,3 +13,4 @@ func _physics_process(delta):
 	move_and_slide()
 	await get_tree().create_timer(2).timeout
 	$".".queue_free()
+

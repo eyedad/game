@@ -11,3 +11,6 @@ weapon = NodePath("Bow")
 animation = &"death"
 
 [node name="Bow" parent="." index="5" instance=ExtResource("4_kw1qs")]
+
+[node name="Label" parent="." index="6"]
+metadata/_edit_use_anchors_ = true

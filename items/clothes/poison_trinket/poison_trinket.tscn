@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cchuod48sm77m"]
+
+[sub_resource type="GDScript" id="GDScript_sqd5l"]
+resource_name = "poison_trinket"
+script/source = "extends Clothes
+"
+
+[node name="PoisonTrinket" type="Node"]
+script = SubResource("GDScript_sqd5l")

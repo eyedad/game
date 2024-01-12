@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://gwhukf1a36jj"]
+
+[sub_resource type="GDScript" id="GDScript_tienp"]
+script/source = "extends Clothes
+@export var add_damage = 10
+var time = 0 
+var temp = 1
+
+func trinket_func(obj: Creature):
+	if temp == 1:
+		#print(weapon_name)
+		obj.weapon.damage += add_damage
+	temp=shooted(obj)	
+
+func shooted(obj: Creature):
+	if obj.weapon.time != time:
+		time = obj.weapon.time
+		return 1
+	else:
+		return 0
+		
+	
+"
+
+[node name="PoisonTinket" type="Node"]
+script = SubResource("GDScript_tienp")

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bhyy7ab77h4qo" path="res://textures/fence.png" id="2_fscw6"]
 [ext_resource type="Texture2D" uid="uid://cetxu5l1i8o0s" path="res://textures/fence_angle.png" id="3_jfhn7"]
 [ext_resource type="PackedScene" uid="uid://dxoq8qlxew7mi" path="res://creatures/player/player.tscn" id="5_burw4"]
-[ext_resource type="PackedScene" uid="uid://cyb31q8hkpr6n" path="res://creatures/skeleton/skeleton.tscn" id="6_557sg"]
+[ext_resource type="PackedScene" uid="uid://cyb31q8hkpr6n" path="res://items/skeleton/skeleton.tscn" id="6_557sg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uum4b"]
 texture = ExtResource("1_8hqwy")
@@ -473,20 +473,10 @@ layer_1/name = "enviroment"
 layer_1/y_sort_enabled = true
 layer_1/tile_data = PackedInt32Array(262146, 2, 0, 196610, 2, 0, 131075, 2, 0, 131076, 2, 268435456, 196612, 2, 268435456, 262149, 2, 268435456, 327685, 2, 268435456, 393221, 2, 0, 458756, 2, 0, 524292, 2, 0, 524291, 2, 268435456, 458754, 2, 268435456, 589827, 3, 0)
 
+[node name="player" parent="." node_paths=PackedStringArray("clothes") instance=ExtResource("5_burw4")]
+position = Vector2(1622, 497)
+clothes = []
+
 [node name="skeleton" parent="." instance=ExtResource("6_557sg")]
-position = Vector2(520, 18)
-
-[node name="skeleton2" parent="." instance=ExtResource("6_557sg")]
-position = Vector2(232, 429)
-
-[node name="skeleton3" parent="." instance=ExtResource("6_557sg")]
-position = Vector2(224, 125)
-
-[node name="skeleton4" parent="." instance=ExtResource("6_557sg")]
-position = Vector2(445, 191)
-
-[node name="skeleton5" parent="." instance=ExtResource("6_557sg")]
-position = Vector2(-84, 258)
-
-[node name="player" parent="." instance=ExtResource("5_burw4")]
-position = Vector2(1630, 1062)
+position = Vector2(880, 119)
+is_player = false

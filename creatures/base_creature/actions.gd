@@ -27,10 +27,10 @@ func manual_control_move(delta, obj:Creature, shoot_point_position:Vector2, glob
 	 
 func camera_control(camera: Camera2D):
 	if Input.is_action_pressed("mouse_weel_up"):
-		print(camera.zoom)
+		#print(camera.zoom)
 		camera.zoom += Vector2(0.01, 0.01)
 	if Input.is_action_pressed("mouse_weel_down"):
-		print(camera.zoom)
+		#print(camera.zoom)
 		camera.zoom -= Vector2(0.01, 0.01)
 
 
@@ -45,7 +45,7 @@ func auto_control_move(delta, obj:Creature, shoot_point_position:Vector2):
 			continue
 		else:
 			player_in_sight=null
-	print(player_last_position)
+	#print(player_last_position)
 	if player_in_sight:
 		if not obj.weapon == null:
 			var vector_to_player = player_in_sight.position - obj.position
@@ -54,7 +54,7 @@ func auto_control_move(delta, obj:Creature, shoot_point_position:Vector2):
 			player_last_position = player_in_sight.position
 			obj.weapon.attack(obj, global_shoot_point_position, preem_vector_to_player.angle())
 			
-			if vector_to_player.length()>=500:
+			if vector_to_player.length() >= obj.combat_distance:
 				obj.velocity = vector_to_player
 				obj.velocity = obj.velocity.normalized() * obj.speed
 		

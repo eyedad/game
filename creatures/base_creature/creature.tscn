@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c8ytpr5nt5ect"]
 
 [ext_resource type="Script" path="res://creatures/base_creature/creature.gd" id="1_x8m6b"]
-[ext_resource type="SpriteFrames" uid="uid://b6dg855v48ajy" path="res://creatures/skeleton/skeleton.tres" id="2_pcosp"]
+[ext_resource type="SpriteFrames" uid="uid://b6dg855v48ajy" path="res://items/skeleton/skeleton.tres" id="2_644cx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hne1j"]
 size = Vector2(25.5, 7)
@@ -16,13 +16,14 @@ height = 52.0
 [sub_resource type="GDScript" id="GDScript_vgvt0"]
 script/source = "extends Label
 func _physics_process(delta):
-	text=\"HP: \" + str($\"..\".health)
+	text=\"HP: \" + str(int($\"..\".health))
 	
 "
 
 [node name="Creature" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_x8m6b")
+is_player = true
 
 [node name="legs_collision_shape" type="CollisionShape2D" parent="."]
 visible = false
@@ -34,7 +35,7 @@ position = Vector2(0, -23.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-0.5, -28.5)
-sprite_frames = ExtResource("2_pcosp")
+sprite_frames = ExtResource("2_644cx")
 animation = &"idle"
 
 [node name="detector_area" type="Area2D" parent="."]
