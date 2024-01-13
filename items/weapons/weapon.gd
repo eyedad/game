@@ -12,7 +12,7 @@ var bullets_left
 var time=0
 
 
-func attack(creature, global_shoot_point_position:Vector2, bullet_angle):
+func attack(creature:Creature, global_shoot_point_position:Vector2, bullet_angle):
 	if bullets_left > 0:
 		#print(bullets_left, "     bullets_left")
 		#print(clip_size, "     clip_size")
@@ -22,6 +22,7 @@ func attack(creature, global_shoot_point_position:Vector2, bullet_angle):
 			instate.global_position=global_shoot_point_position/creature.scale #множитель хз от куда
 			instate.rotation=bullet_angle
 			instate.damage=damage
+			instate.gunslinger=creature
 			damage = base_damage
 			add_child(instate)
 			bullets_left -= 1

@@ -20,7 +20,7 @@ func main_cycle(obj:Creature, delta):
 			ended_status.merge(obj.status)
 			obj.status.erase(status)
 			last_status.erase(status)
-			print(ended_status)
+			#print(ended_status)
 	
 #--------------------START----------------------------------------		
 	for status in new_status:
@@ -32,6 +32,8 @@ func main_cycle(obj:Creature, delta):
 			pass
 		if status == "poison":
 			pass
+		if status == "vampyre":
+			pass
 #--------------------MIDDLE----------------------------------------		
 	for status in obj.status:
 			
@@ -41,6 +43,10 @@ func main_cycle(obj:Creature, delta):
 			pass
 		if status == "poison":
 			obj.health -= delta*obj.status[status][1]
+		if status == "vampyre":
+			obj.health -= delta*obj.status[status][1]
+			obj.status[status][2].health += delta*obj.status[status][1]
+			pass
 #--------------------END----------------------------------------			
 	for status in ended_status:
 			

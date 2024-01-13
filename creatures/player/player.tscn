@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://gwhukf1a36jj" path="res://items/clothes/damage_trinket/damage_trinket.tscn" id="4_km1ag"]
 
 [node name="player" node_paths=PackedStringArray("weapon", "clothes") instance=ExtResource("1_8n70k")]
+health = 10000.0
 weapon = NodePath("Bow")
 clothes = [NodePath("PoisonTinket")]
 

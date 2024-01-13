@@ -7,6 +7,9 @@
 speed = 150.0
 weapon = NodePath("Bow")
 
+[node name="shoot_point" parent="." index="1"]
+position = Vector2(0, -21)
+
 [node name="AnimatedSprite2D" parent="." index="2"]
 animation = &"death"
 

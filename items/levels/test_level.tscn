@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://cbd714ds1oe1i"]
 
-[ext_resource type="Texture2D" uid="uid://cna0p3p4o7xro" path="res://textures/grass.png" id="1_8hqwy"]
-[ext_resource type="Texture2D" uid="uid://bhyy7ab77h4qo" path="res://textures/fence.png" id="2_fscw6"]
-[ext_resource type="Texture2D" uid="uid://cetxu5l1i8o0s" path="res://textures/fence_angle.png" id="3_jfhn7"]
-[ext_resource type="PackedScene" uid="uid://dxoq8qlxew7mi" path="res://creatures/player/player.tscn" id="5_burw4"]
-[ext_resource type="PackedScene" uid="uid://cyb31q8hkpr6n" path="res://items/skeleton/skeleton.tscn" id="6_557sg"]
+[ext_resource type="Texture2D" uid="uid://cna0p3p4o7xro" path="res://textures/grass.png" id="1_5ylcv"]
+[ext_resource type="Texture2D" uid="uid://bhyy7ab77h4qo" path="res://textures/fence.png" id="2_86pv8"]
+[ext_resource type="Texture2D" uid="uid://cetxu5l1i8o0s" path="res://textures/fence_angle.png" id="3_wh2y8"]
+[ext_resource type="PackedScene" uid="uid://dxoq8qlxew7mi" path="res://creatures/player/player.tscn" id="4_13hv8"]
+[ext_resource type="PackedScene" uid="uid://cyb31q8hkpr6n" path="res://creatures/skeleton/skeleton.tscn" id="5_l2oxw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uum4b"]
-texture = ExtResource("1_8hqwy")
+texture = ExtResource("1_5ylcv")
 texture_region_size = Vector2i(320, 320)
 7:5/0 = 0
 7:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -422,7 +422,7 @@ texture_region_size = Vector2i(320, 320)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ra2c6"]
-texture = ExtResource("2_fscw6")
+texture = ExtResource("2_86pv8")
 texture_region_size = Vector2i(320, 320)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -430,7 +430,7 @@ texture_region_size = Vector2i(320, 320)
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9.65541, 75.1723, 0, 80, 160, 0, 150.228, -4.88587)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h6by0"]
-texture = ExtResource("3_jfhn7")
+texture = ExtResource("3_wh2y8")
 texture_region_size = Vector2i(320, 320)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -473,10 +473,9 @@ layer_1/name = "enviroment"
 layer_1/y_sort_enabled = true
 layer_1/tile_data = PackedInt32Array(262146, 2, 0, 196610, 2, 0, 131075, 2, 0, 131076, 2, 268435456, 196612, 2, 268435456, 262149, 2, 268435456, 327685, 2, 268435456, 393221, 2, 0, 458756, 2, 0, 524292, 2, 0, 524291, 2, 268435456, 458754, 2, 268435456, 589827, 3, 0)
 
-[node name="player" parent="." node_paths=PackedStringArray("clothes") instance=ExtResource("5_burw4")]
-position = Vector2(1622, 497)
-clothes = []
-
-[node name="skeleton" parent="." instance=ExtResource("6_557sg")]
+[node name="skeleton" parent="." instance=ExtResource("5_l2oxw")]
 position = Vector2(880, 119)
 is_player = false
+
+[node name="player" parent="." instance=ExtResource("4_13hv8")]
+position = Vector2(1590, 576)

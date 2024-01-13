@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Creature
 
-@export var is_player =  false
+@export var is_player:bool =  false
 @export var combat_distance = 100
 @export var health:float = 100
 @export var speed:float = 300.0
