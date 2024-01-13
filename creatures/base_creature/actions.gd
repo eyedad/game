@@ -51,19 +51,33 @@ func auto_control_move(delta, obj:Creature, shoot_point_position:Vector2):
 			var vector_to_player = player_in_sight.position - obj.position
 			var preem_vector_to_player = vector_to_player+(vector_to_player.length() * player_in_sight.velocity)/800
 			var global_shoot_point_position = shoot_point_position*obj.scale+obj.position
-			player_last_position = player_in_sight.position
+			player_last_position = obj.nav_agent.target_position
 			obj.weapon.attack(obj, global_shoot_point_position, preem_vector_to_player.angle())
 			
+#-------------------------------- MOVEMENT ----------------------------------------
 			if vector_to_player.length() >= obj.combat_distance:
-				obj.velocity = vector_to_player
-				obj.velocity = obj.velocity.normalized() * obj.speed
+				obj.velocity = (-obj.global_position + obj.nav_agent.get_next_path_position()).normalized() * obj.speed
+
+				#print(obj.nav_agent.)
 		
 	elif player_in_sight == null and player_last_position != Vector2():
 		var vector_to_player_last_position = player_last_position - obj.position
-		obj.velocity = vector_to_player_last_position.normalized() * obj.speed
+		print(vector_to_player_last_position)
+		obj.velocity = (-obj.global_position + obj.nav_agent.get_next_path_position()).normalized() * obj.speed
 		if vector_to_player_last_position.length() < 10:
-			player_last_position = Vector2()
-		
+			obj.velocity = Vector2()
+
+func make_path(obj: Creature):
+	var player_in_sight
+	for element in obj.enemy_in_detector_area:
+		if element.name == "player":
+			player_in_sight=element
+			continue
+		else:
+			player_in_sight=null
+	if player_in_sight != null:
+		obj.nav_agent.target_position = player_in_sight.position
+	
 func damages_state(delta, obj:Creature):
 	#print("damaged")
 	obj.velocity=Vector2()
