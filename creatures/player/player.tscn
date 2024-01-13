@@ -15,9 +15,6 @@ animation = &"death"
 frame = 4
 frame_progress = 1.0
 
-[node name="detector_area" parent="." index="3"]
-visible = false
-
 [node name="hit_box" parent="." index="4"]
 visible = false
 

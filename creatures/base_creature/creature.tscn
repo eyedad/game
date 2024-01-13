@@ -1,10 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://c8ytpr5nt5ect"]
 
 [ext_resource type="Script" path="res://creatures/base_creature/creature.gd" id="1_x8m6b"]
-[ext_resource type="SpriteFrames" uid="uid://b6dg855v48ajy" path="res://items/skeleton/skeleton.tres" id="2_644cx"]
+[ext_resource type="SpriteFrames" uid="uid://b6dg855v48ajy" path="res://creatures/skeleton/skeleton.tres" id="2_iyce4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hne1j"]
-size = Vector2(25.5, 7)
+[sub_resource type="CircleShape2D" id="CircleShape2D_s2fll"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vh67q"]
 radius = 263.387
@@ -22,20 +21,21 @@ func _physics_process(delta):
 
 [node name="Creature" type="CharacterBody2D"]
 scale = Vector2(2, 2)
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_x8m6b")
 is_player = true
 
 [node name="legs_collision_shape" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_hne1j")
+shape = SubResource("CircleShape2D_s2fll")
 
 [node name="shoot_point" type="Node2D" parent="."]
 position = Vector2(0, -23.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-0.5, -28.5)
-sprite_frames = ExtResource("2_644cx")
+sprite_frames = ExtResource("2_iyce4")
 animation = &"idle"
 
 [node name="detector_area" type="Area2D" parent="."]
@@ -48,6 +48,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="hit_box_shape" type="CollisionShape2D" parent="hit_box"]
+visible = false
 position = Vector2(0, -21.5)
 shape = SubResource("CapsuleShape2D_h6p51")
 
@@ -59,6 +60,15 @@ offset_bottom = -60.5
 theme_override_font_sizes/font_size = 20
 script = SubResource("GDScript_vgvt0")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+navigation_layers = 3
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="body_entered" from="detector_area" to="." method="_on_detector_area_body_entered"]
 [connection signal="body_exited" from="detector_area" to="." method="_on_detector_area_body_exited"]
 [connection signal="body_entered" from="hit_box" to="." method="_on_hit_box_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

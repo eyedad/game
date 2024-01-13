@@ -2,13 +2,15 @@ extends CharacterBody2D
 class_name Creature
 
 @export var is_player =  false
-@export var combat_distance = 100
+@export var combat_distance: float = 100
 @export var health:float = 100
 @export var speed:float = 300.0
 @export var mana:float = 300.0
 @export var armor:int = 0
 @export var weapon : Weapon
 @export var clothes:Array[Clothes]
+
+@onready var nav_agent :=$NavigationAgent2D as NavigationAgent2D
 
 var attack_cooldown=false
 var status: Dictionary= {}
@@ -88,3 +90,7 @@ func _on_hit_box_body_entered(body):
 	body.queue_free()
 
 
+
+
+func _on_timer_timeout():
+	phys.make_path(self)
