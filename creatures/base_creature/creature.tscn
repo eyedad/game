@@ -24,7 +24,6 @@ scale = Vector2(2, 2)
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_x8m6b")
-is_player = true
 
 [node name="legs_collision_shape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
@@ -57,15 +56,15 @@ offset_left = -21.0
 offset_top = -88.5
 offset_right = 19.0
 offset_bottom = -60.5
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 script = SubResource("GDScript_vgvt0")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 3
-debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.1
 autostart = true
 
 [connection signal="body_entered" from="detector_area" to="." method="_on_detector_area_body_entered"]

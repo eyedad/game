@@ -4,8 +4,6 @@ class_name Creature
 
 @export var is_player:bool =  false
 @export var combat_distance : float = 100
-
-
 @export var health:float = 100
 @export var speed:float = 300.0
 @export var mana:float = 300.0
@@ -24,6 +22,7 @@ var camera: Camera2D
 var anim=preload("res://creatures/base_creature/animation.gd").new()
 var phys=preload("res://creatures/base_creature/actions.gd").new()
 var eff=preload("res://creatures/base_creature/status_effects.gd").new()
+var fog=preload("res://creatures/base_creature/fog_of_war.gd").new()
 
 enum states{
 	MOVE,
@@ -41,9 +40,11 @@ func _ready():
 		weapon.bullets_left=weapon.clip_size
 	#print(shoot_point_position)
 func _physics_process(delta):
+	
 	eff.main_cycle(self, delta)
 	for i in range(clothes.size()):
 		clothes[i].trinket_func(self)
+	
 	
 	var global_mouse_position = get_global_mouse_position()
 	if  health <= 0:
@@ -74,7 +75,9 @@ func _physics_process(delta):
 	#print(state)
 
 func _on_detector_area_body_entered(body):
-	enemy_in_detector_area.append(body)
+	if body != self:
+		enemy_in_detector_area.append(body)
+	
 
 
 func _on_detector_area_body_exited(body):
@@ -90,10 +93,11 @@ func _on_hit_box_body_entered(body):
 				status[status_effect] = body.status_effect[status_effect]
 		else: 
 			status[status_effect] = body.status_effect[status_effect]
+	print(body)
 	body.queue_free()
 
 
 
-
 func _on_timer_timeout():
+	fog.fog_of_war(self)
 	phys.make_path(self)

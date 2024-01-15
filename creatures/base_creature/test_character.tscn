@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmg5sorxut8j8"]
+
+[ext_resource type="PackedScene" uid="uid://c8ytpr5nt5ect" path="res://creatures/base_creature/creature.tscn" id="1_wanju"]
+[ext_resource type="SpriteFrames" uid="uid://dc7lr72g7a3mc" path="res://creatures/player/player.tres" id="2_opl3g"]
+[ext_resource type="PackedScene" uid="uid://bqk0ghnwby8e5" path="res://items/weapons/pistol/pistol.tscn" id="3_0it7g"]
+
+[node name="xyi" node_paths=PackedStringArray("weapon") instance=ExtResource("1_wanju")]
+weapon = NodePath("pistol")
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = ExtResource("2_opl3g")
+
+[node name="pistol" parent="." index="8" instance=ExtResource("3_0it7g")]
+
+[node name="Camera2D" type="Camera2D" parent="." index="9"]

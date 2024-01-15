@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqk0ghnwby8e5"]
+
+[ext_resource type="PackedScene" uid="uid://cex7m3mi3tedr" path="res://items/weapons/pistol/bullet_pistol.tscn" id="1_da87o"]
+
+[sub_resource type="GDScript" id="GDScript_ge5qp"]
+script/source = "extends Weapon
+"
+
+[node name="pistol" type="Node2D"]
+script = SubResource("GDScript_ge5qp")
+base_damage = 20
+reload_time_ms = 3000
+clip_size = 10
+attack_speed_ms = 200
+arrow = ExtResource("1_da87o")

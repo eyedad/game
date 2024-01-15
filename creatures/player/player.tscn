@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxoq8qlxew7mi"]
+[gd_scene load_steps=6 format=3 uid="uid://dxoq8qlxew7mi"]
 
 [ext_resource type="PackedScene" uid="uid://c8ytpr5nt5ect" path="res://creatures/base_creature/creature.tscn" id="1_8n70k"]
 [ext_resource type="SpriteFrames" uid="uid://dc7lr72g7a3mc" path="res://creatures/player/player.tres" id="2_lg7si"]
 [ext_resource type="PackedScene" uid="uid://dl1ob5854leye" path="res://items/weapons/bow/bow.tscn" id="4_6h4qo"]
 [ext_resource type="PackedScene" uid="uid://gwhukf1a36jj" path="res://items/clothes/damage_trinket/damage_trinket.tscn" id="4_km1ag"]
+[ext_resource type="Texture2D" uid="uid://det2frqhl73p4" path="res://textures/circle.png" id="5_n54hv"]
 
 [node name="player" node_paths=PackedStringArray("weapon", "clothes") instance=ExtResource("1_8n70k")]
 health = 10000.0
@@ -20,6 +21,7 @@ frame_progress = 1.0
 visible = false
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
+zoom = Vector2(0.445, 0.445)
 
 [node name="Bow" parent="." index="6" instance=ExtResource("4_6h4qo")]
 reload_time_ms = 2000
@@ -27,3 +29,9 @@ clip_size = 4
 attack_speed_ms = 500
 
 [node name="PoisonTinket" parent="." index="7" instance=ExtResource("4_km1ag")]
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="11"]
+energy = 0.5
+range_layer_min = -100
+shadow_enabled = true
+texture = ExtResource("5_n54hv")

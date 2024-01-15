@@ -31,3 +31,5 @@ func attack(creature:Creature, global_shoot_point_position:Vector2, bullet_angle
 		#print("global_shoot_point_position", global_shoot_point_position, creature)
 		#print("instate.global_position", instate.global_position, creature)
 	
+func _physics_process(delta):
+	global_position=Vector2()

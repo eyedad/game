@@ -62,7 +62,6 @@ func auto_control_move(delta, obj:Creature, shoot_point_position:Vector2):
 		
 	elif player_in_sight == null and player_last_position != Vector2():
 		var vector_to_player_last_position = player_last_position - obj.position
-		print(vector_to_player_last_position)
 		obj.velocity = (-obj.global_position + obj.nav_agent.get_next_path_position()).normalized() * obj.speed
 		if vector_to_player_last_position.length() < 10:
 			obj.velocity = Vector2()
