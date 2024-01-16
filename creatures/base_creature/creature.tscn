@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_s2fll"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vh67q"]
-radius = 263.387
+radius = 282.16
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h6p51"]
 radius = 14.5
@@ -64,7 +64,7 @@ script = SubResource("GDScript_vgvt0")
 navigation_layers = 3
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.01
 autostart = true
 
 [connection signal="body_entered" from="detector_area" to="." method="_on_detector_area_body_entered"]

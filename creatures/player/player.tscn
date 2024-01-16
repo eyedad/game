@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dc7lr72g7a3mc" path="res://creatures/player/player.tres" id="2_lg7si"]
 [ext_resource type="PackedScene" uid="uid://dl1ob5854leye" path="res://items/weapons/bow/bow.tscn" id="4_6h4qo"]
 [ext_resource type="PackedScene" uid="uid://gwhukf1a36jj" path="res://items/clothes/damage_trinket/damage_trinket.tscn" id="4_km1ag"]
-[ext_resource type="Texture2D" uid="uid://det2frqhl73p4" path="res://textures/circle.png" id="5_n54hv"]
+[ext_resource type="Texture2D" uid="uid://b7vynjy7vc7va" path="res://textures/fow.png" id="5_metcy"]
 
 [node name="player" node_paths=PackedStringArray("weapon", "clothes") instance=ExtResource("1_8n70k")]
 health = 10000.0
@@ -16,6 +16,9 @@ sprite_frames = ExtResource("2_lg7si")
 animation = &"death"
 frame = 4
 frame_progress = 1.0
+
+[node name="detector_area_shape" parent="detector_area" index="0"]
+scale = Vector2(1.72, 1.72)
 
 [node name="hit_box" parent="." index="4"]
 visible = false
@@ -31,7 +34,7 @@ attack_speed_ms = 500
 [node name="PoisonTinket" parent="." index="7" instance=ExtResource("4_km1ag")]
 
 [node name="PointLight2D" type="PointLight2D" parent="." index="11"]
-energy = 0.5
+energy = 0.4
 range_layer_min = -100
 shadow_enabled = true
-texture = ExtResource("5_n54hv")
+texture = ExtResource("5_metcy")
