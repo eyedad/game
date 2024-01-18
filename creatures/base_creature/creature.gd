@@ -13,6 +13,7 @@ class_name Creature
 
 @onready var nav_agent :=$NavigationAgent2D as NavigationAgent2D
 
+var i_see_player: bool = false
 var attack_cooldown=false
 var status: Dictionary= {}
 var enemy_in_attack_area: Array[Creature] = []
@@ -93,11 +94,12 @@ func _on_hit_box_body_entered(body):
 				status[status_effect] = body.status_effect[status_effect]
 		else: 
 			status[status_effect] = body.status_effect[status_effect]
-	print(body)
+	#print(body)
 	body.queue_free()
 
 
 
 func _on_timer_timeout():
 	fog.fog_of_war(self)
+	i_see_player = fog.fog_of_war(self)
 	phys.make_path(self)

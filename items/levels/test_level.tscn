@@ -137,7 +137,6 @@ position = Vector2(-1256, 1171)
 is_player = true
 
 [node name="skeleton" parent="." instance=ExtResource("6_557sg")]
-visible = false
 position = Vector2(-87, 684)
 motion_mode = 0
 wall_min_slide_angle = 0.261799
@@ -145,7 +144,3 @@ wall_min_slide_angle = 0.261799
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.4
 blend_mode = 1
-
-[node name="skeleton2" parent="." instance=ExtResource("6_557sg")]
-visible = false
-position = Vector2(-282, 806)

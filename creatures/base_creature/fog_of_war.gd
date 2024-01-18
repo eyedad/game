@@ -2,9 +2,10 @@ extends Node2D
 var ray: RayCast2D
 var child_ray: Array[RayCast2D]
 var enemy: Array[Creature]
+var i_see_player: bool 
 
-func fog_of_war(obj:Creature):	
-	print(enemy, "\n")
+func fog_of_war(obj:Creature) -> bool:
+	i_see_player = false
 	if child_ray:
 		for child in child_ray:
 			if child != null:				
@@ -17,7 +18,7 @@ func fog_of_war(obj:Creature):
 			else:
 				for element in enemy:
 					if element != null and obj.is_player:
-						print(element)
+						#print(element)
 						element.visible = false
 				enemy = []
 
@@ -43,7 +44,12 @@ func fog_of_war(obj:Creature):
 				#print(child_ray)
 				
 				continue
-		
+	if obj.is_player == false:
+		for element in enemy:
+			if element.name == "player" and element != null:
+				i_see_player = true
+	
+	return i_see_player
 		
 		
 		
