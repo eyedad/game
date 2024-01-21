@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6jydgykogiyj"]
+
+[ext_resource type="Texture2D" uid="uid://cdcgotmblrmq0" path="res://textures/pixcel_texture.png" id="1_d2cko"]
+[ext_resource type="PackedScene" uid="uid://dxoq8qlxew7mi" path="res://creatures/player/player.tscn" id="2_3hnfm"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1dn2t"]
+texture = ExtResource("1_d2cko")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_ikluo"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_1dn2t")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ikluo")
+format = 2
+layer_0/tile_data = PackedInt32Array(131074, 0, 0, 196610, 0, 0, 262146, 0, 0, 327682, 0, 0, 393218, 0, 0, 458754, 0, 0, 524290, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 524302, 0, 0, 458766, 0, 0, 393230, 0, 0, 327694, 0, 0, 262158, 0, 0, 196622, 0, 0, 131086, 0, 0, 65550, 0, 0, 327686, 0, 0, 262151, 0, 0, 262152, 0, 0, 196616, 0, 0, 327687, 0, 1, 327688, 0, 1, 327689, 0, 1, 327690, 0, 1, 196617, 0, 1, 262153, 0, 1, 393225, 0, 1, 458761, 0, 1, 524297, 0, 1, 393224, 0, 1, 393223, 0, 1, 393226, 0, 1, 458762, 0, 1, 65541, 0, 1, 65540, 0, 1, 131076, 0, 1, 196612, 0, 1, 196611, 0, 1, 262147, 0, 1, 327683, 0, 1, 393220, 0, 1, 458756, 0, 1, 524292, 0, 1, 11, 0, 1, 12, 0, 1, 65549, 0, 1, 524287, 0, 0, 458751, 0, 0, 393215, 0, 0, 327678, 0, 0, 262142, 0, 0, 196606, 0, 0)
+
+[node name="player" parent="." instance=ExtResource("2_3hnfm")]
+position = Vector2(657, 438)
+is_player = true
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.4
+blend_mode = 1

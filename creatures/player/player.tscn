@@ -17,6 +17,9 @@ animation = &"death"
 frame = 4
 frame_progress = 1.0
 
+[node name="detector_area" parent="." index="3"]
+visible = false
+
 [node name="detector_area_shape" parent="detector_area" index="0"]
 scale = Vector2(1.72, 1.72)
 
