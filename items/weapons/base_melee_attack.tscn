@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://35xtey2876mx"]
+
+[ext_resource type="Script" path="res://items/weapons/base_melee_attack.gd" id="1_uhr7d"]
+[ext_resource type="Texture2D" uid="uid://dtvkhqu4ar717" path="res://icon.svg" id="2_faqux"]
+
+[node name="Node2D" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_uhr7d")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(129, 5)
+texture = ExtResource("2_faqux")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 0, 150, -150, 200, -75, 225, 0, 200, 75, 150, 150)

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dl1ob5854leye" path="res://items/weapons/bow/bow.tscn" id="4_kw1qs"]
 
 [node name="skeleton" node_paths=PackedStringArray("weapon") instance=ExtResource("1_y84je")]
+team = 2
 speed = 150.0
 weapon = NodePath("Bow")
 

@@ -12,4 +12,4 @@ sprite_frames = ExtResource("2_opl3g")
 
 [node name="pistol" parent="." index="8" instance=ExtResource("3_0it7g")]
 
-[node name="Camera2D" type="Camera2D" parent="." index="9"]
+[node name="Camera2D2" type="Camera2D" parent="." index="9"]

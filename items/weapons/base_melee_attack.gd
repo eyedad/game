@@ -1,21 +1,17 @@
-extends CharacterBody2D
-class_name Projectile
+extends Node2D
+class_name Melee_attack
 
 var damage
 var gunslinger:Creature
 var direction
 
 @export var status_effect: Dictionary= {"poison":[2, 4], "slow":[0.5, 4]}
-@export var speed=500
 
 
 func _ready():
 	direction=Vector2.from_angle(rotation)
 func _physics_process(delta):
-	#print(status_effect)
-	velocity=speed * direction
-	move_and_slide()
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.01).timeout
 	$".".queue_free()
 
 

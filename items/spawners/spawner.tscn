@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmwijwdfgx5mv"]
+
+[ext_resource type="Script" path="res://items/spawners/spawner.gd" id="1_d8avj"]
+[ext_resource type="Texture2D" uid="uid://dtvkhqu4ar717" path="res://icon.svg" id="2_4wwk0"]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_d8avj")
+spawnInterval = 10.0
+maxSpawnCount = 3
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(10, 4)
+texture = ExtResource("2_4wwk0")

@@ -1,8 +1,9 @@
 extends CharacterBody2D
 class_name Creature
 
-
+@export var creature_name:String
 @export var is_player:bool =  false
+@export var team: Relationship.Team = GS.Team.TRAMP
 @export var combat_distance : float = 100
 @export var health:float = 100
 @export var speed:float = 300.0
@@ -11,9 +12,10 @@ class_name Creature
 @export var weapon : Weapon
 @export var clothes:Array[Clothes]
 
+
 @onready var nav_agent :=$NavigationAgent2D as NavigationAgent2D
 
-var i_see_player: bool = false
+var i_see_enemy: bool = false
 var attack_cooldown=false
 var status: Dictionary= {}
 var enemy_in_attack_area: Array[Creature] = []
@@ -24,6 +26,9 @@ var anim=preload("res://creatures/base_creature/animation.gd").new()
 var phys=preload("res://creatures/base_creature/actions.gd").new()
 var eff=preload("res://creatures/base_creature/status_effects.gd").new()
 var fog=preload("res://creatures/base_creature/fog_of_war.gd").new()
+#var attitude = preload("res://creatures/base_creature/attitude.gd").new()
+var self_creature = self
+
 
 enum states{
 	MOVE,
@@ -34,18 +39,36 @@ var shoot_point_position
 var state
 var animation
 func _ready():
+	#var rs=GS.get_text_group_relationship(GS.Team.TRAMP, GS.Team.TRAMP)
+	#print(rs)
+	#attitude.init_relationships(creature_name)
+	#if creature_name:
+		#attitude.my_name=creature_name
 	state = states.MOVE
-	shoot_point_position= $shoot_point.position
 	animation = $AnimatedSprite2D
 	if weapon:
 		weapon.bullets_left=weapon.clip_size
 	#print(shoot_point_position)
-func _physics_process(delta):
+#func _physics_process(delta):
+	#var thread = Thread.new()
+	#var bound_func = Callable(self, "_physics_thread2").bind(delta)
+	#thread.start(bound_func)
+	#thread.wait_to_finish()
+	#print($Camera2D)
+	#
+#func _physics_thread2(delta):
+	#print(self_creature.get_node("Camera2D"))
+func method1(delta):
+	phys.auto_control_move(delta, self)
+
+#func _physics_process(delta):
+	#var thread = Thread.new()
+	#var bound_func = Callable(self, "_physics_thread").bind(delta)
 	
+func _physics_process(delta):
 	eff.main_cycle(self, delta)
 	for i in range(clothes.size()):
 		clothes[i].trinket_func(self)
-	
 	
 	var global_mouse_position = get_global_mouse_position()
 	if  health <= 0:
@@ -54,10 +77,15 @@ func _physics_process(delta):
 	match state:
 		states.MOVE:
 			if is_player==true:
-				phys.manual_control_move(delta, self, shoot_point_position, global_mouse_position)
-				phys.camera_control($Camera2D)
+				phys.manual_control_move(delta, self, global_mouse_position)
+				phys.camera_control($Camera2D, self.is_player)
 			else:
-				phys.auto_control_move(delta, self, shoot_point_position)
+				var thread = Thread.new()
+				#var method = phys.auto_control_move
+				var bound_func = Callable(self, "method1").bind(delta)
+				#phys.auto_control_move(delta, self)
+				thread.start(bound_func)
+				#thread.wait_to_finish()
 			anim.move_state(delta, animation, self)
 			
 		states.DAMAGED:
@@ -86,20 +114,27 @@ func _on_detector_area_body_exited(body):
 
 
 func _on_hit_box_body_entered(body):
-	health = health - body.damage
-	state = states.DAMAGED
-	for status_effect in body.status_effect:
-		if status.get(status_effect):
-			if status.get(status_effect)[0] < body.status_effect[status_effect][0]:
+	var self_team=self.team
+	var body_team=body.gunslinger.team
+	var type_relationship=GS.get_group_relationship(self_team, body_team)
+	
+	if body.gunslinger != self and type_relationship!=GS.Type.FRIENDLY:
+		health = health - body.damage
+		state = states.DAMAGED
+		for status_effect in body.status_effect:
+			if status.get(status_effect):
+				if status.get(status_effect)[0] < body.status_effect[status_effect][0]:
+					status[status_effect] = body.status_effect[status_effect]
+			else: 
 				status[status_effect] = body.status_effect[status_effect]
-		else: 
-			status[status_effect] = body.status_effect[status_effect]
-	#print(body)
-	body.queue_free()
-
+		#print(body)
+		body.queue_free()
 
 
 func _on_timer_timeout():
-	fog.fog_of_war(self)
-	i_see_player = fog.fog_of_war(self)
+	#i_see_player = fog.fog_of_war(self)
+	i_see_enemy = true
 	phys.make_path(self)
+	
+	
+

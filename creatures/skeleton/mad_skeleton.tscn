@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvme5bd5xyex8"]
+
+[ext_resource type="PackedScene" uid="uid://c8ytpr5nt5ect" path="res://creatures/base_creature/creature.tscn" id="1_1y84b"]
+[ext_resource type="PackedScene" uid="uid://dl1ob5854leye" path="res://items/weapons/bow/bow.tscn" id="2_xco77"]
+
+[node name="skeleton" node_paths=PackedStringArray("weapon") instance=ExtResource("1_1y84b")]
+team = 0
+speed = 150.0
+weapon = NodePath("Bow")
+
+[node name="shoot_point" parent="." index="1"]
+position = Vector2(0, -21)
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+animation = &"death"
+
+[node name="Bow" parent="." index="5" instance=ExtResource("2_xco77")]
+
+[node name="Label" parent="." index="6"]
+metadata/_edit_use_anchors_ = true
