@@ -35,13 +35,8 @@ func camera_control(camera: Camera2D, is_player:bool):
 
 
 var enemy_last_position: Vector2
-func delay(ms):
-	OS.delay_msec(ms)
-	return 1
 
 func auto_control_move(delta, obj:Creature):
-	await delay(1000)
-	print(obj.position)
 	obj.velocity=Vector2()
 	var enemy
 	for element in obj.enemy_in_detector_area:
@@ -60,8 +55,10 @@ func auto_control_move(delta, obj:Creature):
 				#obj.weapon.attack(global_preem_vector_to_enemy)
 			
 #-------------------------------- MOVEMENT ----------------------------------------
+			#print(obj.combat_distance)
 			if vector_to_enemy.length() >= obj.combat_distance:
 				obj.velocity = (-obj.global_position + obj.nav_agent.get_next_path_position()).normalized() * obj.speed
+				#print((-obj.global_position + obj.nav_agent.get_next_path_position()).normalized() * obj.speed)
 
 				#print(obj.nav_agent.)
 		
@@ -72,6 +69,7 @@ func auto_control_move(delta, obj:Creature):
 			obj.velocity = Vector2()
 
 func make_path(obj: Creature):
+	#print(obj.enemy_in_detector_area)
 	if obj.i_see_enemy == true:
 		var enemy
 		for element in obj.enemy_in_detector_area:

@@ -22,6 +22,7 @@ var random_number = randf_range(-0.2, 0.2)
 func attack(global_attack_position:Vector2):
 	var creature=get_parent()
 	var shoot_point_position = $"../shoot_point".position
+	print(shoot_point_position)
 	#global_mouse_position = to_global(DisplayServer.mouse_get_position())
 	#global_mouse_position = get_global_mouse_position()
 	var global_shoot_point_position=shoot_point_position*creature.scale+creature.position

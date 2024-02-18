@@ -28,7 +28,8 @@ var eff=preload("res://creatures/base_creature/status_effects.gd").new()
 var fog=preload("res://creatures/base_creature/fog_of_war.gd").new()
 #var attitude = preload("res://creatures/base_creature/attitude.gd").new()
 var self_creature = self
-
+#var delta
+var last_time=0
 
 enum states{
 	MOVE,
@@ -39,79 +40,57 @@ var shoot_point_position
 var state
 var animation
 func _ready():
-	#var rs=GS.get_text_group_relationship(GS.Team.TRAMP, GS.Team.TRAMP)
-	#print(rs)
-	#attitude.init_relationships(creature_name)
-	#if creature_name:
-		#attitude.my_name=creature_name
 	state = states.MOVE
 	animation = $AnimatedSprite2D
 	if weapon:
 		weapon.bullets_left=weapon.clip_size
-	#print(shoot_point_position)
-#func _physics_process(delta):
-	#var thread = Thread.new()
-	#var bound_func = Callable(self, "_physics_thread2").bind(delta)
-	#thread.start(bound_func)
-	#thread.wait_to_finish()
-	#print($Camera2D)
-	#
-#func _physics_thread2(delta):
-	#print(self_creature.get_node("Camera2D"))
-func method1(delta):
-	phys.auto_control_move(delta, self)
 
-#func _physics_process(delta):
-	#var thread = Thread.new()
-	#var bound_func = Callable(self, "_physics_thread").bind(delta)
+	var thread = Thread.new()
+	var bound_func = Callable(self, "_physics_thread")
+	thread.start(bound_func)
 	
-func _physics_process(delta):
-	eff.main_cycle(self, delta)
-	for i in range(clothes.size()):
-		clothes[i].trinket_func(self)
-	
-	var global_mouse_position = get_global_mouse_position()
-	if  health <= 0:
-		#print("govno")
-		state = states.DEATH
-	match state:
-		states.MOVE:
-			if is_player==true:
-				phys.manual_control_move(delta, self, global_mouse_position)
-				phys.camera_control($Camera2D, self.is_player)
-			else:
-				var thread = Thread.new()
-				#var method = phys.auto_control_move
-				var bound_func = Callable(self, "method1").bind(delta)
-				#phys.auto_control_move(delta, self)
-				thread.start(bound_func)
-				#thread.wait_to_finish()
-			anim.move_state(delta, animation, self)
-			
-		states.DAMAGED:
-			phys.damages_state(delta, self)
-			anim.damages_state(delta, self, animation)
-			speed = speed/2
-			await get_tree().create_timer(0.15).timeout
-			speed = speed*2
-			state=states.MOVE
-		
-		states.DEATH:
-			velocity = Vector2()
-			$Label.visible = false
-			anim.death_state(delta, self, animation)
-	move_and_slide()
-	#print(state)
+func _physics_thread():
+	while true:
+		var delta = get_process_delta_time()
+		await get_tree().create_timer(0.001).timeout
+		eff.main_cycle(self, delta)
+		for i in range(clothes.size()):
+			clothes[i].trinket_func(self)
+	#
+		var global_mouse_position = get_global_mouse_position()
+		if  health <= 0:
+			state = states.DEATH
+		match state:
+			states.MOVE:
+				if is_player==true:
+					
+					phys.manual_control_move(delta, self, global_mouse_position)
+					phys.camera_control($Camera2D, self.is_player)
+				else:
+					phys.auto_control_move(delta, self)
+				anim.move_state(delta, animation, self)
+				
+			states.DAMAGED:
+				phys.damages_state(delta, self)
+				anim.damages_state(delta, self, animation)
+				speed = speed/2
+				await get_tree().create_timer(0.15).timeout
+				speed = speed*2
+				state=states.MOVE
+			#
+			states.DEATH:
+				velocity = Vector2()
+				$Label.visible = false
+				anim.death_state(delta, self, animation)
+		move_and_slide()
+		#print(state)
 
 func _on_detector_area_body_entered(body):
 	if body != self:
 		enemy_in_detector_area.append(body)
-	
-
 
 func _on_detector_area_body_exited(body):
 	enemy_in_detector_area.erase(body)
-
 
 func _on_hit_box_body_entered(body):
 	var self_team=self.team
@@ -132,7 +111,7 @@ func _on_hit_box_body_entered(body):
 
 
 func _on_timer_timeout():
-	#i_see_player = fog.fog_of_war(self)
+	##i_see_player = fog.fog_of_war(self)
 	i_see_enemy = true
 	phys.make_path(self)
 	

@@ -34,6 +34,7 @@ func spawnObject(spawner) -> void:
 		parent.add_child(newObject)
 		# Увеличиваем счетчик спауненных объектов
 		spawnedCount += 1
+		#print(spawnedCount)
 	else:
 		# Выводим предупреждение, если объект для спавна не указан
 		print("Warning: Object to spawn is not set!")
