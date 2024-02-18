@@ -127,5 +127,18 @@ blend_mode = 1
 [node name="Spawner" parent="." instance=ExtResource("3_u6oll")]
 position = Vector2(3827, 1135)
 objectToSpawn = ExtResource("3_q3a6s")
+<<<<<<< Updated upstream
 spawnInterval = 0.5
 maxSpawnCount = 2
+=======
+spawnInterval = 0.05
+maxSpawnCount = 2
+team = 2
+
+[node name="Spawner2" parent="." instance=ExtResource("3_u6oll")]
+position = Vector2(4087, 1043)
+objectToSpawn = ExtResource("3_q3a6s")
+spawnInterval = 0.05
+maxSpawnCount = 2
+team = 3
+>>>>>>> Stashed changes
