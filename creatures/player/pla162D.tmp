@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://dxoq8qlxew7mi"]
+
+[ext_resource type="PackedScene" uid="uid://c8ytpr5nt5ect" path="res://creatures/base_creature/creature.tscn" id="1_8n70k"]
+[ext_resource type="SpriteFrames" uid="uid://dc7lr72g7a3mc" path="res://creatures/player/player.tres" id="2_lg7si"]
+[ext_resource type="PackedScene" uid="uid://dl1ob5854leye" path="res://items/weapons/bow/bow.tscn" id="4_6h4qo"]
+[ext_resource type="PackedScene" uid="uid://gwhukf1a36jj" path="res://items/clothes/damage_trinket/damage_trinket.tscn" id="4_km1ag"]
+[ext_resource type="PackedScene" uid="uid://b4p4r0jvbi7w7" path="res://items/weapons/sword/sword.tscn" id="4_whr5s"]
+[ext_resource type="PackedScene" uid="uid://lo1icemapnk6" path="res://items/weapons/hz_weapon/hz_projectile.tscn" id="6_0dci0"]
+[ext_resource type="PackedScene" uid="uid://chnk8ioeo6xmx" path="res://creatures/player/viewer.tscn" id="6_ebc2y"]
+[ext_resource type="PackedScene" uid="uid://d3ttfeajekpxm" path="res://items/weapons/hz_weapon/hz_weapon2.tscn" id="8_atuyo"]
+
+[node name="player" node_paths=PackedStringArray("weapon") instance=ExtResource("1_8n70k")]
+scale = Vector2(1, 1)
+creature_name = "Игрок"
+is_player = true
+team = 0
+health = 10000.0
+weapon = NodePath("inventory/HzWeapon2")
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = ExtResource("2_lg7si")
+animation = &"death"
+frame = 4
+frame_progress = 1.0
+
+[node name="detector_area" parent="." index="3"]
+visible = false
+
+[node name="detector_area_shape" parent="detector_area" index="0"]
+scale = Vector2(1.72, 1.72)
+
+[node name="hit_box" parent="." index="4"]
+visible = false
+
+[node name="PoisonTinket" parent="." index="5" instance=ExtResource("4_km1ag")]
+
+[node name="viewer" parent="." index="9" instance=ExtResource("6_ebc2y")]
+
+[node name="PointLight2D" parent="viewer" index="0"]
+enabled = false
+energy = 0.0
+
+[node name="DirectionalLight2D" parent="viewer" index="1"]
+enabled = false
+energy = 0.0
+
+[node name="Bow" parent="inventory" index="0" instance=ExtResource("4_6h4qo")]
+clip_size = 6
+attack_speed_ms = 200
+attack_scene = ExtResource("6_0dci0")
+
+[node name="Sword" parent="inventory" index="1" instance=ExtResource("4_whr5s")]
+
+[node name="HzWeapon2" parent="inventory" index="2" instance=ExtResource("8_atuyo")]
+
+[editable path="viewer"]

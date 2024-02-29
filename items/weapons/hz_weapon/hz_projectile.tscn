@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://lo1icemapnk6"]
+
+[ext_resource type="Texture2D" uid="uid://ckfig8atgloax" path="res://bullet.png" id="1_osoap"]
+
+[sub_resource type="GDScript" id="GDScript_or6m3"]
+script/source = "extends Projectile
+var preem_position
+var center
+var rand
+var radius# Радиус окружности
+var gunslinger_shoot_position
+var angle = 0  # Угол поворота
+var first_angle  # Угол поворота
+@export var A = 2000
+
+func _ready():
+	if gunslinger.is_player == true:
+		preem_position = get_global_mouse_position()
+	#else:
+		#preem_position = 
+	direction = Vector2.from_angle(rotation)
+	angle = direction.angle()	#	Угол
+	first_angle = angle						#	Ускорение(пикселей/с^2)
+	
+	center = (gunslinger.position+preem_position)/2
+	gunslinger_shoot_position = gunslinger.position
+	radius = (preem_position - gunslinger_shoot_position).length()/2
+	print(direction)
+	
+func _physics_process(delta):
+	speed += A * delta
+	angle += speed/radius * delta
+	rotation = angle - PI/2
+	# Пересчитываем позицию объекта на основе угла и радиуса
+	var x = center.x + radius * cos(angle+PI)
+	var y = center.y + radius * sin(angle+PI)
+	
+	# Устанавливаем новую позицию объекта
+	position = Vector2(x, y)
+	move_and_slide()
+	if angle - first_angle >= PI:
+		queue_free()
+	
+
+
+func preem(enemy: Creature, creature: Creature, global_shoot_point_position: Vector2):
+	return Vector2()
+
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_coidy"]
+radius = 7.67
+height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_csnwo"]
+radius = 7.66667
+height = 48.0
+
+[node name="base_projectile" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = SubResource("GDScript_or6m3")
+speed = 400
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(24.9583, -0.333333)
+scale = Vector2(0.178931, 0.193548)
+texture = ExtResource("1_osoap")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(25, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_coidy")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(25, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_csnwo")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

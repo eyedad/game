@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmwijwdfgx5mv"]
+
+[ext_resource type="Script" path="res://items/spawners/spawner.gd" id="1_d8avj"]
+[ext_resource type="PackedScene" uid="uid://cyb31q8hkpr6n" path="res://creatures/skeleton/skeleton.tscn" id="2_4mp4u"]
+
+[node name="spawner" type="Node2D"]
+position = Vector2(144, 113)
+script = ExtResource("1_d8avj")
+objectToSpawn = ExtResource("2_4mp4u")
+spawnInterval = 100.0
+circle_spawn_diameter = 200.0
+borders_visible = true

@@ -45,9 +45,7 @@ func get_group_relationship(Team1: Team, Team2: Team):
 		return Type.UNKNOWN
 		
 func relationship_test(obj1: Creature, obj2: Creature, type:Type=Type.HOSTILE):
-	var obj1_team=obj1.team
-	var obj2_team=obj2.team
-	var type_relationship=GS.get_group_relationship(obj1_team, obj2_team)
+	var type_relationship=GS.get_group_relationship(obj1.team, obj2.team)
 	if type_relationship==type:
 		return true
 	else:
@@ -71,6 +69,61 @@ func get_text_group_relationship(Team1: Team, Team2: Team, language="RU"):
 			return "NORMAL"
 		if group==Type.UNKNOWN:
 			return "UNKNOWN"
+			
+var line	
+func draw_line1(to, parent=self, from=Vector2(),  width=10, color=Color(1, 0, 0)):
 
+	# Если линия еще не создана, то создаем ее
+	if not line:
+		line = Line2D.new()
+		parent.add_child(line)
+	
+	# Очищаем текущие точки
+	line.clear_points()
+	
+	# Добавляем новые точки
+	line.add_point(from)
+	line.add_point(to)
+	
+	# Устанавливаем цвет и толщину линии
+	line.set_default_color(color)
+	line.set_width(width)
+	
+var line2	
+func draw_line2(to, parent=self, from=Vector2(),  width=10, color=Color(0, 1, 0)):
 
+	# Если линия еще не создана, то создаем ее
+	if not line2:
+		line2 = Line2D.new()
+		parent.add_child(line2)
+	
+	# Очищаем текущие точки
+	line2.clear_points()
+	
+	# Добавляем новые точки
+	line2.add_point(from)
+	line2.add_point(to)
+	
+	# Устанавливаем цвет и толщину линии
+	line2.set_default_color(color)
+	line2.set_width(width)
+
+var line3	
+func draw_line3(to, parent=self, from=Vector2(),  width=10, color=Color(0, 0, 1)):
+
+	# Если линия еще не создана, то создаем ее
+	if not line3:
+		line3 = Line2D.new()
+		parent.add_child(line3)
+	
+	# Очищаем текущие точки
+	line3.clear_points()
+	
+	# Добавляем новые точки
+	line3.add_point(from)
+	line3.add_point(to)
+	
+	# Устанавливаем цвет и толщину линии
+	line3.set_default_color(color)
+	line3.set_width(width)
 

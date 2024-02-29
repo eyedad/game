@@ -6,7 +6,7 @@
 [node name="skeleton" node_paths=PackedStringArray("weapon") instance=ExtResource("1_y84je")]
 team = 2
 speed = 150.0
-weapon = NodePath("Bow")
+weapon = NodePath("inventory/Bow")
 
 [node name="shoot_point" parent="." index="1"]
 position = Vector2(0, -21)
@@ -14,7 +14,10 @@ position = Vector2(0, -21)
 [node name="AnimatedSprite2D" parent="." index="2"]
 animation = &"death"
 
-[node name="Bow" parent="." index="5" instance=ExtResource("4_kw1qs")]
+[node name="detector_area_shape" parent="detector_area" index="0"]
+position = Vector2(0.5, 31.5)
 
-[node name="Label" parent="." index="6"]
+[node name="Label" parent="." index="5"]
 metadata/_edit_use_anchors_ = true
+
+[node name="Bow" parent="inventory" index="0" instance=ExtResource("4_kw1qs")]

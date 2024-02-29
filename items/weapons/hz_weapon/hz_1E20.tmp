@@ -1,0 +1,131 @@
+[gd_scene load_steps=5 format=3 uid="uid://lo1icemapnk6"]
+
+[ext_resource type="Texture2D" uid="uid://ckfig8atgloax" path="res://bullet.png" id="1_osoap"]
+
+[sub_resource type="GDScript" id="GDScript_or6m3"]
+script/source = "extends Projectile
+var preem_position
+var center
+var rand
+var radius = 100  # Радиус окружности
+var rotatedPoints_old
+var gunslinger_shoot_position
+var angle = 0  # Угол поворота
+
+func _ready():
+	speed = 100
+	if gunslinger.is_player == true:
+		preem_position = get_global_mouse_position()
+	set_rotation_degrees(get_rotation_degrees()+90)
+	direction=Vector2.from_angle(rotation)
+	center = (gunslinger.position+preem_position)/2
+	gunslinger_shoot_position = gunslinger.position
+	
+func _physics_process(delta):
+	angle += speed * delta
+	
+	# Пересчитываем позицию объекта на основе угла и радиуса
+	var x = center.x + radius * cos(angle)
+	var y = center.y + radius * sin(angle)
+	
+	# Устанавливаем новую позицию объекта
+	position = Vector2(x, y)
+	speed *= 1.01
+	#var direction2 = (center - position).normalized()
+	#var direction3: Vector2
+	#if rand == true:
+		#direction3.x = -direction2.y
+		#direction3.y = direction2.x
+	#else:
+		#direction3.x = direction2.y
+		#direction3.y = -direction2.x
+		#
+	#direction *= 1.05
+	#direction.from_angle(direction3.angle())
+	#
+	#set_rotation(direction.angle())
+	#velocity=speed * direction
+	#print(velocity)
+	move_and_slide()
+	#await get_tree().create_timer(0.3).timeout
+	#var points = [position]
+	#var angle = 0.1  # Угол в радианах (например, 45 градусов)
+	#var rotatedPoints = rotatePoints(points, angle)
+	#var sign
+	#GS.draw_line1(rotatedPoints[0])
+	##if rotatedPoints_old:
+		#if rotatedPoints_old > 0:
+			#sign = true
+		#else:
+			#sign = false
+	#if sign == true:
+		#if rotatedPoints[0].x < 0:
+			#queue_free()
+	#else:
+		#if rotatedPoints[0].x > 0:
+			#queue_free()
+	#rotatedPoints_old = rotatedPoints[0].x
+	#
+	#if (gunslinger_shoot_position - position).length() > (gunslinger_shoot_position - preem_position).length():
+		#queue_free()
+
+
+
+
+func preem(enemy: Creature, creature: Creature, global_shoot_point_position: Vector2):
+	
+	var vector_to_enemy = enemy.position - creature.position
+	var preem_vector_to_enemy = vector_to_enemy+(vector_to_enemy.length() * enemy.velocity)/self.speed
+	var global_preem_vector_to_enemy = creature.position + preem_vector_to_enemy
+	preem_position = global_preem_vector_to_enemy
+	var direction = (global_preem_vector_to_enemy - global_shoot_point_position).normalized()
+	return direction
+	
+
+#func rotatePoints(points: Array, angle: float) -> Array:
+	#var rotatedPoints = []
+	#var cosAngle = cos(angle)
+	#var sinAngle = sin(angle)
+	#var rotationMatrix = PackedFloat32Array([cosAngle, -sinAngle, sinAngle, cosAngle])
+#
+	#for point in points:
+		#var x = point.x * rotationMatrix[0] + point.y * rotationMatrix[1]
+		#var y = point.x * rotationMatrix[2] + point.y * rotationMatrix[3]
+		#rotatedPoints.append(Vector2(x, y))
+#
+	#return rotatedPoints
+		#
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_coidy"]
+radius = 7.67
+height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_csnwo"]
+radius = 7.66667
+height = 48.0
+
+[node name="base_projectile" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = SubResource("GDScript_or6m3")
+speed = 400
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(24.9583, -0.333333)
+scale = Vector2(0.178931, 0.193548)
+texture = ExtResource("1_osoap")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(25, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_coidy")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(25, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_csnwo")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

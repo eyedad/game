@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://items/weapons/bow/bows.gd" id="1_qcu0q"]
 [ext_resource type="PackedScene" uid="uid://ctck1vqbjaljl" path="res://items/weapons/base_projectile.tscn" id="2_r3owj"]
-[ext_resource type="Texture2D" uid="uid://dtvkhqu4ar717" path="res://icon.svg" id="3_ugyrf"]
+[ext_resource type="Texture2D" uid="uid://iln8ppp6lqfn" path="res://kisspng-computer-icons-archer-font-archer-5ac4f4cf107fd6.1112710615228571670676.jpg" id="3_carr4"]
 
 [node name="Bow" type="Node2D"]
 script = ExtResource("1_qcu0q")
 attack_scene = ExtResource("2_r3owj")
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("3_ugyrf")
+texture = ExtResource("3_carr4")

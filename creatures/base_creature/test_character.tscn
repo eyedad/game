@@ -4,8 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dc7lr72g7a3mc" path="res://creatures/player/player.tres" id="2_opl3g"]
 [ext_resource type="PackedScene" uid="uid://bqk0ghnwby8e5" path="res://items/weapons/pistol/pistol.tscn" id="3_0it7g"]
 
-[node name="xyi" node_paths=PackedStringArray("weapon") instance=ExtResource("1_wanju")]
-weapon = NodePath("pistol")
+[node name="xyi" instance=ExtResource("1_wanju")]
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("2_opl3g")

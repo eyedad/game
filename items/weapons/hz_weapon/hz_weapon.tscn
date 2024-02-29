@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci6hm6vgiceed"]
+
+[ext_resource type="PackedScene" uid="uid://lo1icemapnk6" path="res://items/weapons/hz_weapon/hz_projectile.tscn" id="1_ix6w0"]
+
+[sub_resource type="GDScript" id="GDScript_v1or2"]
+script/source = "extends Weapon
+var curent_direction: bool = true
+
+func attack(enemy: Creature):
+	if bullets_left > 0:
+		if Time.get_ticks_msec()-time>=attack_speed_ms*(1+random_number):
+			time=Time.get_ticks_msec()
+			var creature=$\"../../\"
+			var direction
+			var current_scene = get_tree().get_current_scene()
+			var shoot_point = creature.get_node(\"shoot_point\")
+			var global_shoot_point_position = shoot_point.global_transform.origin
+			var instate=attack_scene.instantiate()
+			
+			
+			
+			instate.rand = curent_direction
+			curent_direction = not curent_direction
+			
+			
+			
+			if creature.is_player != true:
+				direction = instate.preem(enemy, creature, global_shoot_point_position)
+				
+			else:
+				direction = (get_global_mouse_position() - global_shoot_point_position).normalized()
+			#print(instate.speed)
+			instate.position=global_shoot_point_position
+			instate.rotation=direction.angle()
+			instate.damage=damage
+			instate.gunslinger=creature
+			damage = base_damage
+			current_scene.add_child(instate)
+			bullets_left -= 1
+	elif Time.get_ticks_msec()-time>=reload_time_ms:
+		bullets_left = clip_size
+		
+
+		
+			
+"
+
+[node name="HzWeapon" type="Node2D"]
+script = SubResource("GDScript_v1or2")
+attack_scene = ExtResource("1_ix6w0")

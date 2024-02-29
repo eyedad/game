@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi8abqml46mig"]
+
+[ext_resource type="PackedScene" uid="uid://dl1ob5854leye" path="res://items/weapons/bow/bow.tscn" id="1_05r2i"]
+[ext_resource type="PackedScene" uid="uid://b4p4r0jvbi7w7" path="res://items/weapons/sword/sword.tscn" id="2_18ut4"]
+[ext_resource type="PackedScene" uid="uid://bqk0ghnwby8e5" path="res://items/weapons/pistol/pistol.tscn" id="3_vj5fe"]
+[ext_resource type="PackedScene" uid="uid://cex7m3mi3tedr" path="res://items/weapons/pistol/bullet_pistol.tscn" id="4_uvvyu"]
+
+[node name="Inventory" type="Node2D"]
+
+[node name="Bow" parent="." instance=ExtResource("1_05r2i")]
+
+[node name="Sword" parent="." instance=ExtResource("2_18ut4")]
+
+[node name="pistol" parent="." instance=ExtResource("3_vj5fe")]
+attack_scene = ExtResource("4_uvvyu")

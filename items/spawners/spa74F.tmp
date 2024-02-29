@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmwijwdfgx5mv"]
+
+[ext_resource type="Script" path="res://items/spawners/spawner.gd" id="1_d8avj"]
+[ext_resource type="PackedScene" uid="uid://cyb31q8hkpr6n" path="res://creatures/skeleton/skeleton.tscn" id="2_4mp4u"]
+[ext_resource type="Texture2D" uid="uid://dtvkhqu4ar717" path="res://icon.svg" id="2_4wwk0"]
+
+[node name="Spawner" type="Node2D"]
+position = Vector2(513, 305)
+script = ExtResource("1_d8avj")
+objectToSpawn = ExtResource("2_4mp4u")
+spawnInterval = 0.1
+maxSpawnCount = 100
+shape = 1
+rectangle_spawn_dimensions = Vector2(130, 130)
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("2_4wwk0")

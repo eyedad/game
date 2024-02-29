@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvtej6vsjd1la"]
+
+[ext_resource type="PackedScene" uid="uid://b8rrqj4kbg564" path="res://items/item_container.tscn" id="2_bxu5r"]
+[ext_resource type="PackedScene" uid="uid://dxoq8qlxew7mi" path="res://creatures/player/player.tscn" id="2_r3bym"]
+[ext_resource type="PackedScene" uid="uid://bqk0ghnwby8e5" path="res://items/weapons/pistol/pistol.tscn" id="3_pkorm"]
+[ext_resource type="PackedScene" uid="uid://cex7m3mi3tedr" path="res://items/weapons/pistol/bullet_pistol.tscn" id="4_bpukt"]
+[ext_resource type="PackedScene" uid="uid://dmwijwdfgx5mv" path="res://items/spawners/spawner.tscn" id="5_odrx8"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("2_r3bym")]
+position = Vector2(187, -468)
+
+[node name="item_container" parent="." instance=ExtResource("2_bxu5r")]
+position = Vector2(-44, -82)
+
+[node name="pistol" parent="item_container" instance=ExtResource("3_pkorm")]
+position = Vector2(235, -305)
+attack_scene = ExtResource("4_bpukt")
+
+[node name="spawner" parent="." instance=ExtResource("5_odrx8")]
+position = Vector2(544, 377)
+spawnInterval = 0.02
+maxSpawnCount = 15
+team = 2
+
+[node name="spawner2" parent="." instance=ExtResource("5_odrx8")]
+position = Vector2(935, 375)
+spawnInterval = 1.0
+maxSpawnCount = 0
+team = 2
+shape = 1
+
+[node name="spawner3" parent="." instance=ExtResource("5_odrx8")]
+position = Vector2(822, 570)
+spawnInterval = 1.0
+maxSpawnCount = 0
+team = 2

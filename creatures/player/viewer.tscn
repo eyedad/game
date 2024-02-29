@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://chnk8ioeo6xmx"]
+
+[ext_resource type="Script" path="res://creatures/player/viewer.gd" id="1_w74jd"]
+[ext_resource type="Texture2D" uid="uid://det2frqhl73p4" path="res://textures/circle.png" id="2_hs37u"]
+[ext_resource type="PackedScene" uid="uid://c0y5akga5jdf8" path="res://creatures/player/show_inventory.tscn" id="3_8xbn4"]
+
+[node name="viewer" type="Node2D"]
+script = ExtResource("1_w74jd")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.95
+blend_mode = 2
+range_layer_min = -100
+shadow_enabled = true
+texture = ExtResource("2_hs37u")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.95
+blend_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.7, 0.7)
+
+[node name="show_inventory" parent="." instance=ExtResource("3_8xbn4")]
+offset_left = -134.0
+offset_top = -417.0
+offset_right = -134.0
+offset_bottom = -417.0

@@ -1,31 +1,44 @@
 extends Node
-var last_status : Dictionary 
-var new_status : Dictionary
-var ended_status : Dictionary
+var last_status : Dictionary = {}
+var new_status : Dictionary={}
+var ended_status : Dictionary={}
 
-func main_cycle(obj:Creature, delta):
-	
-	for status in obj.status:
-		
-		if last_status.get(status) == null:
-		
+func main_cycle(obj:Creature, delta):	
+	ended_status = {}
+	new_status = {}
+	##получение new_status
+	var statuses = obj.status.keys()
+	for status in statuses:
+		if obj.is_player:
+			print("-----", obj.status)			
+		if last_status.get(status) == null:	
 			new_status[status] = obj.status[status]
-			
-	
-	for status in obj.status:
-		obj.status[status][0]-=delta
-		#print(obj.status[status], status)a
-		
+			if obj.is_player:
+				print("Статус обновился! -new=", new_status[status],"last=",  last_status.get(status), "current=", obj.status[status])
+				
+	##Вычет времени статуса	и удаление			
+	statuses = obj.status.keys()
+	for status in statuses:
+		if obj.is_player:
+			print("status ", status, " from statses:", obj.status)
+		obj.status[status][0]-=10.0
 		if obj.status[status][0] <= 0:
-			ended_status.merge(obj.status)
+			if obj.is_player:
+				print("timeout1, ", obj.status, last_status)
+			ended_status[status]=obj.status[status]##Если время кончилось, то добавляем ended_status
 			obj.status.erase(status)
-			last_status.erase(status)
-			#print(ended_status)
-	
+			if obj.is_player:
+				print("timeout2, ", obj.status, last_status)
+	#if obj.is_player:
+		#print("\n\n")		
+
+
+	pass
 #--------------------START----------------------------------------		
 	for status in new_status:
 			
 		if status == "slow":
+			#print("-----", obj.status[status])
 			obj.speed = obj.speed/obj.status[status][1]
 			
 		if status == "stun":
@@ -58,6 +71,9 @@ func main_cycle(obj:Creature, delta):
 		if status == "poison":
 			pass
 #------------------------------------------------------------				
-	last_status.merge(obj.status)
-	ended_status = {}
-	new_status = {}
+
+	last_status={}
+	for status in obj.status:
+		last_status[status]=obj.status[status]
+	#if obj.is_player:
+		#print("last_status=", last_status)

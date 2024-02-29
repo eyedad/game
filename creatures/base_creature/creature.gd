@@ -10,14 +10,15 @@ class_name Creature
 @export var mana:float = 300.0
 @export var armor:int = 0
 @export var weapon : Weapon
-@export var clothes:Array[Clothes]
+#@export var clothes : Armor
+@export var trinket:Array[Clothes]
 
 
 @onready var nav_agent :=$NavigationAgent2D as NavigationAgent2D
 
 var i_see_enemy: bool = false
 var attack_cooldown=false
-var status: Dictionary= {}
+var status: Dictionary= {"poison":[2, 4], "slow":[0.5, 4]}
 var enemy_in_attack_area: Array[Creature] = []
 var enemy_in_detector_area: Array[Creature] = []
 var camera: Camera2D
@@ -39,24 +40,53 @@ enum states{
 var shoot_point_position
 var state
 var animation
+var num_threads = OS.get_processor_count() # Получаем количество доступных ядер
+var random_thread_index = randi() % num_threads
+
 func _ready():
 	state = states.MOVE
 	animation = $AnimatedSprite2D
 	if weapon:
 		weapon.bullets_left=weapon.clip_size
+	#print(random_thread_index)
+	for i in range(num_threads):
+		var thread = Thread.new()
+		var pass_func = Callable(self, "pass_func")
+		var bound_func = Callable(self, "_physics_thread")
+		if i == random_thread_index:
+			thread.start(bound_func)
+		else:
+			thread.start(pass_func)
+var spawnTimer: float = 0.0
+var spawnInterval: float = 3.0
+var sss=0
+func _physics_process(delta):
+	if is_player:
+		move_and_slide()
 
-	var thread = Thread.new()
-	var bound_func = Callable(self, "_physics_thread")
-	thread.start(bound_func)
+	#spawnTimer += delta
+	#if spawnTimer >= spawnInterval:
+		#spawnTimer=0
+		#var inventory=$inventory.get_children()
+		#weapon=inventory[sss]
+		#print(sss, weapon)
+		#sss+=1
+		#if sss>=inventory.size():
+			#sss=0
+	
+	
 	
 func _physics_thread():
 	while true:
-		var delta = get_process_delta_time()
-		await get_tree().create_timer(0.001).timeout
-		eff.main_cycle(self, delta)
-		for i in range(clothes.size()):
-			clothes[i].trinket_func(self)
-	#
+		var delta = get_process_delta_time() 
+		await get_tree().create_timer(delta).timeout
+		if not is_player:
+			move_and_slide()
+
+		#eff.main_cycle(self, delta)
+		#for i in range(clothes.size()):
+			#clothes[i].trinket_func(self)
+	
 		var global_mouse_position = get_global_mouse_position()
 		if  health <= 0:
 			state = states.DEATH
@@ -65,8 +95,8 @@ func _physics_thread():
 				if is_player==true:
 					
 					phys.manual_control_move(delta, self, global_mouse_position)
-					phys.camera_control($Camera2D, self.is_player)
 				else:
+					pass
 					phys.auto_control_move(delta, self)
 				anim.move_state(delta, animation, self)
 				
@@ -82,15 +112,16 @@ func _physics_thread():
 				velocity = Vector2()
 				$Label.visible = false
 				anim.death_state(delta, self, animation)
-		move_and_slide()
-		#print(state)
 
 func _on_detector_area_body_entered(body):
 	if body != self:
-		enemy_in_detector_area.append(body)
+		if GS.relationship_test(self, body):
+			enemy_in_detector_area.append(body)
 
 func _on_detector_area_body_exited(body):
-	enemy_in_detector_area.erase(body)
+	if body != self:
+		if GS.relationship_test(self, body):
+			enemy_in_detector_area.erase(body)
 
 func _on_hit_box_body_entered(body):
 	var self_team=self.team
@@ -109,11 +140,10 @@ func _on_hit_box_body_entered(body):
 		#print(body)
 		body.queue_free()
 
-
-func _on_timer_timeout():
-	##i_see_player = fog.fog_of_war(self)
-	i_see_enemy = true
-	phys.make_path(self)
+#func _on_timer_timeout():
+	#####i_see_player = fog.fog_of_war(self)
+	#i_see_enemy = true
+	#phys.make_path(self)
 	
 	
 

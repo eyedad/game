@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://chnk8ioeo6xmx"]
+
+[ext_resource type="Script" path="res://creatures/player/viewer.gd" id="1_w74jd"]
+[ext_resource type="Texture2D" uid="uid://det2frqhl73p4" path="res://textures/circle.png" id="2_hs37u"]
+
+[sub_resource type="GDScript" id="GDScript_pgtbx"]
+resource_name = "HP_BAR"
+script/source = "extends Label
+
+@onready var player = $\"../../../\"
+@onready var old_hp_label = player.get_node(\"Label\")
+
+
+func _ready():
+	old_hp_label.visible = false
+	
+"
+
+[node name="viewer" type="Node2D"]
+script = ExtResource("1_w74jd")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.95
+blend_mode = 2
+range_layer_min = -100
+shadow_enabled = true
+texture = ExtResource("2_hs37u")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.95
+blend_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.7, 0.7)
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ui"]
+layout_mode = 1
+offset_right = 454.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 50
+text = "fffffffffffggfgfdf122"
+script = SubResource("GDScript_pgtbx")

@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://items/weapons/weapon.gd" id="1_13m8h"]
 [ext_resource type="PackedScene" uid="uid://35xtey2876mx" path="res://items/weapons/base_melee_attack.tscn" id="2_1yq2h"]
-[ext_resource type="Texture2D" uid="uid://dtvkhqu4ar717" path="res://icon.svg" id="3_4lp0i"]
+[ext_resource type="Texture2D" uid="uid://c3x87dy6jbdap" path="res://kisspng-sword-computer-icons-clip-art-ice-axe-5acbd9f2176393.4286623915233090420958.jpg" id="3_7hu8s"]
 
 [node name="Sword" type="Node2D"]
 script = ExtResource("1_13m8h")
 attack_scene = ExtResource("2_1yq2h")
 
-[node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_4lp0i")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_7hu8s")

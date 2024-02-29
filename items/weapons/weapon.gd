@@ -14,37 +14,41 @@ class_name Weapon
 #@export var weapon_type: WeaponType
 
 var damage = base_damage
-var bullets_left
+var bullets_left=0
 var time=0
-var random_number = randf_range(-0.2, 0.2)
+var random_number = randf_range(-0.3, 0.3)
 
 
-func attack(global_attack_position:Vector2):
-	var creature=get_parent()
-	var shoot_point_position = $"../shoot_point".position
-	print(shoot_point_position)
-	#global_mouse_position = to_global(DisplayServer.mouse_get_position())
-	#global_mouse_position = get_global_mouse_position()
-	var global_shoot_point_position=shoot_point_position*creature.scale+creature.position
-	var direction = (global_attack_position - global_shoot_point_position).normalized()
+func attack(enemy: Creature):
 	if bullets_left > 0:
-		if Time.get_ticks_msec()-time>=attack_speed_ms+random_number*attack_speed_ms:
+		if Time.get_ticks_msec()-time>=attack_speed_ms*(1+random_number):
 			time=Time.get_ticks_msec()
+			var creature=$"../../"
+			var direction
+			var current_scene = get_tree().get_current_scene()
+			var shoot_point = creature.get_node("shoot_point")
+			var global_shoot_point_position = shoot_point.global_transform.origin
 			var instate=attack_scene.instantiate()
-			#instate.global_position=global_shoot_point_position/creature.scale #множитель хз от куда
-			instate.position=$"../shoot_point".position
+			
+			if creature.is_player != true:
+				direction = instate.preem(enemy, creature, global_shoot_point_position)
+				
+			else:
+				direction = (get_global_mouse_position() - global_shoot_point_position).normalized()
+			#print(instate.speed)
+			instate.position=global_shoot_point_position
 			instate.rotation=direction.angle()
 			instate.damage=damage
 			instate.gunslinger=creature
 			damage = base_damage
-			add_child(instate)
+			current_scene.add_child(instate)
 			bullets_left -= 1
 	elif Time.get_ticks_msec()-time>=reload_time_ms:
 		bullets_left = clip_size
 		
-			
-	
-	
 
-#func _physics_process(delta):
-	#global_position=Vector2()
+		
+			
+
+func _physics_process(delta):
+	global_position=Vector2()
